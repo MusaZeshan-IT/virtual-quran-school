@@ -2,7 +2,7 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://musazeshan-it.github.io/Virtual-Quran-School",
+  "homepage": "https://musazeshan-it.github.io/virtual-quran-school",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
