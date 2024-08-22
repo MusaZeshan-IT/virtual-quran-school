@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 const csrfToken = Cookies.get('csrftoken');
 
 // Defining base URL
-const baseURL = 'http://127.0.0.1:8000/api/';
+const baseURL = 'https://virtualquranschoolbackend.vercel.app/';
 
 // Create an Axios instance with CSRF token included in headers
 const loginSignupApi = axios.create({
