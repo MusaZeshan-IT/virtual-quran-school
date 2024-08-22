@@ -67,7 +67,7 @@ const Footer = () => {
                                     <div className='grid place-items-center shadow-[0_0_1px_1.5px_rgba(255,255,255,1)] bg-[rgb(179,169,30)] w-12 h-12 rounded-full'>
                                         <i className='fa-regular fa-envelope'></i>
                                     </div>
-                                    <span className='font-poppins text-lg'>musazeshan.it@gmail.com</span>
+                                    <span className='font-poppins text-lg'>bilalsabir386@gmail.com</span>
                                 </div>
                                 <div className='flex items-center gap-x-3'>
                                     <div className='grid place-items-center shadow-[0_0_1px_1.5px_rgba(255,255,255,1)] bg-[rgb(179,169,30)] w-12 h-12 rounded-full'>
@@ -79,7 +79,7 @@ const Footer = () => {
                                     <div className='grid place-items-center shadow-[0_0_1px_1.5px_rgba(255,255,255,1)] bg-[rgb(179,169,30)] w-12 h-12 rounded-full'>
                                         <i className='fa-solid fa-phone'></i>
                                     </div>
-                                    <span className='font-poppins text-lg'>+92 307-9410053</span>
+                                    <span className='font-poppins text-lg'>+92 301 6223795</span>
                                 </div>
                             </div>
                         </div>

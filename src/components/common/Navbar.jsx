@@ -2,13 +2,43 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TopBanner from '../../assets/top-banner.png';
 import AllahName from '../../assets/allah-name.png';
+import logoutApi from '../../apis/logoutApi';
 
-const Navbar = () => {
+const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const [isDropdownOpen, setDropdownOpen] = useState(false); // State for dropdown visibility
+
 
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
     };
+
+    const toggleDropdown = () => {
+        setDropdownOpen(!isDropdownOpen);
+    };
+
+    const handleLogout = async () => {
+        const refresh_token = localStorage.getItem('refresh_token');
+        try {
+            const apiUrl = '/accounts/logout/';
+            const response = await logoutApi.post(apiUrl, {
+                refresh_token: refresh_token
+            });
+
+            if (response.status === 204 || response.status === 205) {
+                // Logout success
+                setIsAuthenticated(false);
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('refresh_token');
+                alert('Logged out successfully');
+                navigate('/');
+            }
+        } catch (err) {
+            console.error('Error logging out:', err.response?.data || err.message);
+        }
+    };
+
+    const username = localStorage.getItem('username');
 
     return (
         <div className='bg-[rgb(8,81,63)] h-[90px] px-10 flex justify-between items-center'>
@@ -25,19 +55,34 @@ const Navbar = () => {
                     <Link><li className='hover:cursor-not-allowed'>Contact</li></Link>
                 </ul>
             </div>
-            <div className='flex items-center'>
-                <div className='md:block hidden'>
-                    <Link to="/register">
-                        <button className='lg:me-4 me-3 shadow-[5.5px_5.5px_1px_0_rgba(40,40,40,0.5)] text-lg font-poppins hover:shadow-none lg-custom:hover:px-8 hover:px-7 transition-all duration-500 ease-linear bg-[rgb(231,231,230)] text-black text-[17px] tracking-wide lg-custom:px-7 px-6 py-[10px] rounded-[34px]'>
-                            Signup
+            <div className='items-center md:flex hidden'>
+                <Link to="/register">
+                    <button className='lg:me-4 me-3 shadow-[5.5px_5.5px_1px_0_rgba(40,40,40,0.5)] text-lg font-poppins hover:shadow-none lg-custom:hover:px-8 hover:px-7 transition-all duration-500 ease-linear bg-[rgb(231,231,230)] text-black text-[17px] tracking-wide lg-custom:px-7 px-6 py-[10px] rounded-[34px]'>
+                        Signup
+                    </button>
+                </Link>
+                <Link to="/login">
+                    <button className='shadow-[5px_5px_1px_0_rgba(219,158,48,0.4)] text-lg font-poppins hover:shadow-none lg-custom:hover:px-8 hover:px-7 transition-all duration-500 ease-linear bg-[rgb(219,158,48)] text-white text-[17px] tracking-wide lg-custom:px-7 px-6 py-[10px] rounded-[32px]'>
+                        Login
+                    </button>
+                </Link>
+                {isAuthenticated && (
+                    <div className='relative'>
+                        <button onClick={toggleDropdown} className='rounded-full flex shadow-[0_0_4px_2px_rgba(40,40,40,0.5)] transition-all duration-500 ease-in-out hover:bg-[rgb(199,202,201)] justify-center ms-5 items-center h-12 w-14 bg-[rgb(229,235,233)]'>
+                            <i className='fa-solid text-black me-1 fa-user'></i>
+                            <i className='fa-solid text-black fa-caret-down'></i>
                         </button>
-                    </Link>
-                    <Link to="/login">
-                        <button className='shadow-[5px_5px_1px_0_rgba(219,158,48,0.4)] text-lg font-poppins hover:shadow-none lg-custom:hover:px-8 hover:px-7 transition-all duration-500 ease-linear bg-[rgb(219,158,48)] text-white text-[17px] tracking-wide lg-custom:px-7 px-6 py-[10px] rounded-[32px]'>
-                            Login
-                        </button>
-                    </Link>
-                </div>
+                        {/* Dropdown Menu */}
+                        {isDropdownOpen && (
+                            <div className='absolute z-50 right-0 mt-4 py-2 w-48 bg-white rounded-lg shadow-lg'>
+                                <p className='px-4 py-1 text-[17px] border-b text-gray-500 font-poppins'>{username}</p>
+                                <button onClick={() => handleLogout()} className='block font-poppins w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-200'>
+                                    Logout
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                )}
                 {/* Menu Icon for Small Screens */}
                 <button onClick={toggleSidebar} className='lg:hidden grid place-items-center border-2 border-[rgb(219,158,49)] w-10 h-10 rounded-md text-white text-lg ms-9'>
                     <i className='fa-solid fa-bars text-[18px]'></i>

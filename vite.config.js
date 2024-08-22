@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/'  // Adjusted base path
+  // base: '/virtual-quran-school/'  // Adjusted base path
 })

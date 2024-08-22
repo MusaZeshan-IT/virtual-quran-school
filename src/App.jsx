@@ -5,16 +5,31 @@ import Footer from './components/common/Footer';
 import CourseDetails from './pages/CourseDetails';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
+import { useEffect, useState } from 'react';
+import Checkout from './pages/Checkout'
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const token = localStorage.getItem('access_token');
+
+  useEffect(() => {
+    try {
+      setIsAuthenticated(!!token);
+    } catch (error) {
+      console.error('Error retrieving token:', error);
+    }
+  }, [isAuthenticated]);
+
   return (
     <div className="app">
       <Router>
-        <Navbar />
+        <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/courses/:courseUrlName" element={<CourseDetails />} />
         </Routes>
         <Footer />
