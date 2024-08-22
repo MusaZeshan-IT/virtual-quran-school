@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 const csrfToken = Cookies.get('csrftoken');
 
 // Defining base URL
-const baseURL = 'https://virtualquranschoolbackend.vercel.app/';
+const baseURL = 'https://virtualquranschoolbackend.vercel.app/api/';
 
 // Create an Axios instance without setting the Authorization header
 const logoutApi = axios.create({

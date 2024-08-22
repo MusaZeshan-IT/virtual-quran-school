@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 // Initialize axios instance with base URL and headers
 const api = axios.create({
-    baseURL: 'https://virtualquranschoolbackend.vercel.app/',
+    baseURL: 'https://virtualquranschoolbackend.vercel.app/api/',
     timeout: 5000,
     headers: {
         'X-CSRFToken': Cookies.get('csrftoken'),
