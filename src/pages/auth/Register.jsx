@@ -39,7 +39,7 @@ const Register = () => {
 
     return (
         <div className='my-24'>
-            <div className='bg-[rgb(246,246,235)] px-8 py-10 w-[450px] mx-auto rounded-lg'>
+            <div className='bg-[rgb(246,246,235)] px-8 py-10 xs:w-[450px] w-full mx-auto rounded-lg'>
                 <h3 className='font-poppins font-semibold tracking-wide text-[22.5px] mb-7'>Create an Account</h3>
                 <form onSubmit={handleSubmit}>
                     {error && (

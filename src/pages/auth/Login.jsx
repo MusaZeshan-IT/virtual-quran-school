@@ -39,7 +39,7 @@ const Login = ({ setIsAuthenticated }) => {
 
     return (
         <div className='my-24'>
-            <div className='bg-[rgb(246,246,235)] px-10 py-12 w-[400px] mx-auto rounded-lg'>
+            <div className='bg-[rgb(246,246,235)] px-10 py-12 2xs-custom:w-[400px] w-full mx-auto rounded-lg'>
                 <form onSubmit={handleSubmit}>
                     <h3 className='font-poppins font-semibold tracking-wide text-[22px] mb-7'>Hi, Welcome back!</h3>
                     {error && (

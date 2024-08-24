@@ -2,7 +2,7 @@ import React from 'react';
 import Kid from '../assets/hero-img.png';
 import BlackMasjid from '../assets/black-masjid.png';
 
-const Hero = () => {
+const HomeHero = () => {
     return (
         <div className='relative overflow-hidden  h-full bg-[rgb(8,81,63)]'>
             {/* Background image with reduced opacity */}
@@ -32,4 +32,4 @@ const Hero = () => {
     );
 }
 
-export default Hero;
+export default HomeHero;
