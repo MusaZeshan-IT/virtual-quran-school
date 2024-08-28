@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 // Initialize axios instance with base URL and headers
 const api = axios.create({
-    baseURL: 'https://virtualquranschoolbackend.vercel.app/api/',
+    baseURL: 'https://web-production-61cc.up.railway.app/api/',
     timeout: 5000,
     headers: {
         'X-CSRFToken': Cookies.get('csrftoken'),
@@ -25,7 +25,7 @@ api.interceptors.response.use(
         if (error.response?.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
             try {
-                const { data } = await axios.post('http://127.0.0.1:8000/api/token/refresh/', {
+                const { data } = await axios.post('https://web-production-61cc.up.railway.app/api/token/refresh/', {
                     refresh: localStorage.getItem('refresh_token')
                 });
                 localStorage.setItem('access_token', data.access);
