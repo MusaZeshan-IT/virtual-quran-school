@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Course from './Course';
 import api from '../../apis/api';
+import Spinner from '../Spinner';
 
 const Courses = () => {
     const [courses, setCourses] = useState([]);
+    const [index, setIndex] = useState(0);
+    const [coursesPerRow, setCoursesPerRow] = useState(3); // Default to 3 courses per row
 
     const fetchCourses = () => {
         api.get('/courses/')
@@ -16,10 +19,46 @@ const Courses = () => {
             });
     };
 
-    // Use useEffect to call fetchCourses when the component mounts
     useEffect(() => {
         fetchCourses();
     }, []);
+
+    // Function to update the number of courses per row based on screen size
+    const updateCoursesPerRow = () => {
+        const screenWidth = window.innerWidth;
+        if (screenWidth < 640) { // sm breakpoint in Tailwind (below 640px)
+            setCoursesPerRow(1);
+        } else if (screenWidth < 1024) { // lg breakpoint in Tailwind (below 1024px)
+            setCoursesPerRow(2);
+        } else {
+            setCoursesPerRow(3);
+        }
+    };
+
+    useEffect(() => {
+        // Update courses per row when the component mounts
+        updateCoursesPerRow();
+        // Add an event listener to update courses per row on window resize
+        window.addEventListener('resize', updateCoursesPerRow);
+        // Clean up event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', updateCoursesPerRow);
+        };
+    }, []);
+
+    const handleNext = () => {
+        if (index + coursesPerRow < courses.length) {
+            setIndex(index + 1);
+        }
+    };
+
+    const handlePrevious = () => {
+        if (index > 0) {
+            setIndex(index - 1);
+        }
+    };
+
+    const visibleCourses = courses.slice(index, index + coursesPerRow);
 
     return (
         <div className='2xl:px-24 xl-custom:px-20 xl:px-16 lg-custom:px-14 lg:px-12 md-custom:px-10 px-8'>
@@ -33,16 +72,21 @@ const Courses = () => {
                     </h3>
                 </div>
                 <div className='flex gap-x-4 md:mt-0 mt-6'>
+                    {/* Previous Button */}
                     <i
-                        className={`border-2 cursor-not-allowed opacity-50 border-yellow-600 grid place-items-center rounded-full h-14 w-14 fa-solid fa-chevron-left hover:text-white text-yellow-600`}
+                        onClick={handlePrevious}
+                        className={`border-2 ${index === 0 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} border-yellow-600 grid place-items-center rounded-full h-14 w-14 fa-solid fa-chevron-left hover:bg-yellow-600 hover:text-white text-yellow-600`}
                     ></i>
+                    {/* Next Button */}
                     <i
-                        className={`border-2 cursor-not-allowed opacity-50 border-yellow-600 grid place-items-center rounded-full h-14 w-14 fa-solid fa-chevron-right hover:text-white text-yellow-600`}
+                        onClick={handleNext}
+                        className={`border-2 ${index + coursesPerRow >= courses.length ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} border-yellow-600 grid place-items-center rounded-full h-14 w-14 fa-solid fa-chevron-right hover:bg-yellow-600 hover:text-white text-yellow-600`}
                     ></i>
                 </div>
             </div>
-            <div className={`grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 md:mt-10 mt-14`}>
-                {courses.map((course) => (
+            {/* Courses Container */}
+            <div className={`grid lg:grid-cols-${coursesPerRow} sm:grid-cols-${coursesPerRow === 3 ? 2 : coursesPerRow} grid-cols-1 gap-8 md:mt-10 mt-14 transition-transform duration-500 ease-in-out transform translate-x-${-index * (100 / coursesPerRow)}%`}>
+                {visibleCourses.map((course) => (
                     <Course key={course.id} course={course} />
                 ))}
             </div>

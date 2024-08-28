@@ -44,7 +44,7 @@ const CourseDetails = () => {
 
     if (!course) {
         return (
-            <Spinner message={"Loading course details..."}/>
+            <Spinner message={"Loading course details..."} />
         )
     }
 
