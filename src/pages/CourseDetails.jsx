@@ -1,28 +1,35 @@
-// src/pages/CourseDetails.jsx
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import api from '../apis/api';
 import CourseBg from '../assets/courses/course-bg.jpg';
-import ConfirmationModal from '../components/courses/ConfirmationModal';
 import NotFoundPage from './NotFoundPage';
+import Spinner from '../components/Spinner';
 
 const CourseDetails = () => {
     const { courseUrlName } = useParams();
     const [course, setCourse] = useState(null);
+    const [notFound, setNotFound] = useState(false);
     const [activeTab, setActiveTab] = useState('info');
-    // const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
 
     const navigate = useNavigate();
 
     useEffect(() => {
+        let timeoutId;
+
         api.get(`/courses/${courseUrlName}/`)
             .then(response => {
                 setCourse(response.data);
             })
             .catch(error => {
                 console.error('Error fetching course details:', error);
+                timeoutId = setTimeout(() => {
+                    setNotFound(true);
+                }, 4000); // 4 seconds delay before showing the 404 page
             });
+
+        return () => {
+            clearTimeout(timeoutId); // Cleanup timeout if the component unmounts or the API call succeeds
+        };
     }, [courseUrlName]);
 
     const getCategories = (course) => {
@@ -31,8 +38,14 @@ const CourseDetails = () => {
             : 'No categories available';
     };
 
-    if (!course) {
+    if (notFound) {
         return <NotFoundPage />;
+    }
+
+    if (!course) {
+        return (
+            <Spinner message={"Loading course details..."}/>
+        )
     }
 
     const handlePurchase = () => {

@@ -11,6 +11,7 @@ export default {
         'philosopher': ['Philosopher', 'sans-serif'],
         'aladin': ['Aladin', 'system-ui'],
         'poppins': ['Poppins', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
       },
       boxShadow: {
         'orange-sun': '9px 7px 1px rgba(255, 165, 0, 0.4)', // Stylized orange shadow
