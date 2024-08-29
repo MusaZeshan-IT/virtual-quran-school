@@ -103,7 +103,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                         <Link to="/" onClick={toggleSidebar}><li className=''>Home</li></Link>
                     </div>
                     <div className='border-b-2 pb-2 border-[rgb(209,205,205)]'>
-                        <Link to="/courses"><li className='hover:cursor-not-allowed'>Courses</li></Link>
+                        <Link to="/courses" onClick={toggleSidebar}><li className='hover:cursor-not-allowed'>Courses</li></Link>
                     </div>
                     <div className='border-b-2 pb-2 border-[rgb(209,205,205)]'>
                         <Link onClick={(e) => e.preventDefault()}><li className='hover:cursor-not-allowed'>Blog</li></Link>
@@ -116,12 +116,12 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                     </div>
                 </ul>
                 <div className='mt-12'>
-                    <Link to="/register">
+                    <Link to="/register" onClick={toggleSidebar}>
                         <button className='lg:me-4 me-3 w-full shadow-[5.5px_5.5px_1px_0_rgba(40,40,40,0.5)] text-lg font-poppins hover:shadow-none lg-custom:hover:px-8 hover:px-7 transition-all duration-500 ease-linear bg-black text-white text-[17px] tracking-wide lg-custom:px-7 px-6 py-[10px] rounded-[34px]'>
                             Signup
                         </button>
                     </Link>
-                    <Link to="/login">
+                    <Link to="/login" onClick={toggleSidebar}>
                         <button className='w-full mt-5 shadow-[5px_5px_1px_0_rgba(219,158,48,0.4)] text-lg font-poppins hover:shadow-none lg-custom:hover:px-8 hover:px-7 transition-all duration-500 ease-linear bg-[rgb(219,158,48)] text-white text-[17px] tracking-wide lg-custom:px-7 px-6 py-[10px] rounded-[32px]'>
                             Login
                         </button>
