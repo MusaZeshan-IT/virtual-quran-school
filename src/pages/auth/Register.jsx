@@ -94,7 +94,7 @@ const Register = () => {
                     />
                     <button className='bg-[rgb(29,142,90)] rounded-md font-poppins text-white w-full py-3 mt-10' type="submit">Register</button>
                     <p className='font-poppins text-[16px] mt-5 text-center text-[rgb(99,97,97)] tracking-tight'>Already have an account?
-                        <Link>
+                        <Link to="/login">
                             <span className='ms-2 text-[13.4px] relative bottom-[1px] font-semibold tracking-wider text-black'>Login Now</span>
                         </Link>
                     </p>

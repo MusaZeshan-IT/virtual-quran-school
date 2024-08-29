@@ -73,7 +73,7 @@ const Login = ({ setIsAuthenticated }) => {
                         {isSubmitting ? 'Logging in...' : 'Log In'}
                     </button>
                     <p className='font-poppins text-[16px] mt-5 text-center text-[rgb(99,97,97)] tracking-tight'>Don't have an account?
-                        <Link>
+                        <Link to="/register">
                             <span className='ms-2 text-[13.4px] relative bottom-[1px] font-semibold tracking-wider text-black'>Register Now</span>
                         </Link>
                     </p>
