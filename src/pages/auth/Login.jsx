@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import loginSignupApi from '../../apis/loginSignupApi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = ({ setIsAuthenticated }) => {
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(''); // State for error messages
     const [isSubmitting, setIsSubmitting] = useState(false); // State for loading
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,9 +29,9 @@ const Login = ({ setIsAuthenticated }) => {
                 setPassword('');
                 setError('');
                 setIsAuthenticated(true);
+                navigate('/');
             }
         } catch (err) {
-            a
             console.error('Error logging in:', err);
             setError('Failed to log in. Please check your credentials and try again.');
         } finally {
