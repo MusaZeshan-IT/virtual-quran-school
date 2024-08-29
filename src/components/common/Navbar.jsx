@@ -52,7 +52,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                         <li>Home</li>
                     </Link>
                     <Link to="/courses">
-                        <li className=''>Courses</li>
+                        <li>Courses</li>
                     </Link>
                     <Link><li className='hover:cursor-not-allowed'>Blog</li></Link>
                     <Link><li className='hover:cursor-not-allowed'>About</li></Link>
@@ -103,7 +103,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                         <Link to="/" onClick={toggleSidebar}><li className=''>Home</li></Link>
                     </div>
                     <div className='border-b-2 pb-2 border-[rgb(209,205,205)]'>
-                        <Link onClick={(e) => e.preventDefault()}><li className='hover:cursor-not-allowed'>Courses</li></Link>
+                        <Link to="/courses"><li className='hover:cursor-not-allowed'>Courses</li></Link>
                     </div>
                     <div className='border-b-2 pb-2 border-[rgb(209,205,205)]'>
                         <Link onClick={(e) => e.preventDefault()}><li className='hover:cursor-not-allowed'>Blog</li></Link>
