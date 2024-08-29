@@ -56,7 +56,7 @@ const Login = ({ setIsAuthenticated }) => {
                         name="username"
                         value={usernameOrEmail}
                         onChange={(e) => setUsernameOrEmail(e.target.value)}
-                        placeholder="Enter your username"
+                        placeholder="Enter username or email"
                         required
                     />
                     <input
@@ -65,7 +65,7 @@ const Login = ({ setIsAuthenticated }) => {
                         name="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
+                        placeholder="Enter password"
                         required
                     />
                     <p className='font-poppins mt-4 ms-1 text-[13.8px]'>Forgot your password?</p>
