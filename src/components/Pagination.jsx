@@ -24,13 +24,13 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                 </button>
 
                 {/* Page Numbers */}
-                <div className={`grid grid-cols-${totalPages} gap-x-5`}>
+                <div className={`flex gap-x-5`}>
                     {[...Array(totalPages)].map((_, index) => {
                         const pageNumber = index + 1;
                         return (
                             <button
                                 key={pageNumber}
-                                className={`flex items-center hover:border-b-[2px] hover:border-b-emerald-600 text-xl justify-center transition-all duration-500 ease-in-out ${pageNumber === currentPage
+                                className={`flex w-4 items-center hover:border-b-[2px] hover:border-b-emerald-600 text-xl justify-center transition-all duration-500 ease-in-out ${pageNumber === currentPage
                                     ? 'text-gray-600 border-b-[2px] border-b-emerald-600'
                                     : 'text-gray-600 pb-[2px]'
                                     }`}
