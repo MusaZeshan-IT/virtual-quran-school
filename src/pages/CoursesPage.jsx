@@ -64,8 +64,8 @@ const CoursesPage = () => {
             <Hero pageName="Our Courses" pageSecondName="Courses" className="mb-12" />
             <div className='py-28 font-inter'>
                 {/* Filter Button for Small Screens */}
-                <div className='flex md:hidden items-center justify-center gap-x-6 px-8 bg-white shadow-lg rounded-md mx-6 relative z-20'>
-                    <div className='py-4 flex gap-x-3 items-center cursor-pointer hover:text-[rgb(8,81,63)]' onClick={toggleSidebar}>
+                <div onClick={toggleSidebar} className='flex md:hidden items-center justify-center gap-x-6 px-8 bg-white shadow-lg rounded-md mx-6 relative z-20'>
+                    <div className='py-4 flex gap-x-3 items-center cursor-pointer hover:text-[rgb(8,81,63)]'>
                         <i className='fa-solid fa-filter text-lg'></i>
                         <span className='text-xl font-semibold'>Filter</span>
                     </div>
