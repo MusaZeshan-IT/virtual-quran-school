@@ -17,7 +17,7 @@ const CoursesPage = () => {
         level: '',
         price: '',
     });
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const fetchCourses = () => {
         api.get('/courses/')
