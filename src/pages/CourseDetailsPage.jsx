@@ -59,7 +59,7 @@ const CourseDetails = () => {
 
     return (
         <div>
-            <Hero pageName={course.name} pageSecondName="Course Details"/>
+            <Hero pageName={course.name} pageSecondName="Course Details" />
             <div className='my-28 2xl:px-36 xl-custom:px-32 xl:px-28 lg-custom:px-24 lg:px-20 md-custom:px-16 px-8'>
                 <div className="flex lg:flex-row flex-col gap-16 justify-between">
                     <div className='lg:w-[70%] font-poppins'>

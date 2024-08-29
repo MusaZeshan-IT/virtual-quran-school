@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Course2 from '../components/courses/Course2';
 import api from '../apis/api';
 import Hero from '../components/shared/Hero';
+import Pagination from '../components/Pagination';
+import Spinner from '../components/Spinner';
 
 const filterOptions = {
     sortBy: ['Special Courses', 'Courses', 'Top Courses'],
@@ -12,12 +14,24 @@ const filterOptions = {
 const CoursesPage = () => {
     const [courses, setCourses] = useState([]);
     const [activeFilter, setActiveFilter] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [selectedOptions, setSelectedOptions] = useState({
         sortBy: '',
         level: '',
         price: '',
     });
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    useEffect(() => {
+        fetchCourses();
+    }, []);
+
+    useEffect(() => {
+        if (courses.length > 0) {
+            getTotalPages();
+        }
+    }, [courses]);
 
     const fetchCourses = () => {
         api.get('/courses/')
@@ -29,9 +43,10 @@ const CoursesPage = () => {
             });
     };
 
-    useEffect(() => {
-        fetchCourses();
-    }, []);
+    const getTotalPages = () => {
+        const total = Math.ceil(courses.length / 6);
+        setTotalPages(total);
+    };
 
     const handleFilterClick = (filterType) => {
         setActiveFilter(activeFilter === filterType ? '' : filterType);
@@ -58,6 +73,16 @@ const CoursesPage = () => {
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    if (!courses.length) {
+        return <Spinner message="Loading courses..." />;
+    }
+
+    const visibleCourses = courses.slice((currentPage - 1) * 6, currentPage * 6);
 
     return (
         <div className='bg-gradient-to-r from-[rgb(250,247,247)] via-gray-100 to-[rgb(250,247,247)] min-h-screen'>
@@ -144,11 +169,11 @@ const CoursesPage = () => {
                     </div>
                     <div className='py-4 border-r border-gray-300 pr-4 cursor-pointer relative'>
                         <div onClick={() => handleFilterClick('sortBy')} className="hover:text-[rgb(8,81,63)]">
-                            <span className='text-lg font-semibold'>Sort by</span>
+                            <span className='text-xl font-semibold'>Sort by</span>
                             <i className='fa-solid fa-angle-down ml-2'></i>
                         </div>
                         {activeFilter === 'sortBy' && (
-                            <div className='absolute left-0 mt-2 w-52 bg-white shadow-lg z-10 rounded-lg overflow-hidden'>
+                            <div className='absolute left-0 mt-2 bg-white shadow-lg rounded-md w-full'>
                                 {filterOptions.sortBy.map((option) => (
                                     <div key={option} className='flex items-center p-3 cursor-pointer hover:bg-gray-200' onClick={() => handleOptionSelect('sortBy', option)}>
                                         <input type='checkbox' className='mr-2' checked={isOptionSelected('sortBy', option)} readOnly />
@@ -160,11 +185,11 @@ const CoursesPage = () => {
                     </div>
                     <div className='py-4 border-r border-gray-300 pr-4 cursor-pointer relative'>
                         <div onClick={() => handleFilterClick('level')} className="hover:text-[rgb(8,81,63)]">
-                            <span className='text-lg font-semibold'>Level</span>
+                            <span className='text-xl font-semibold'>Level</span>
                             <i className='fa-solid fa-angle-down ml-2'></i>
                         </div>
                         {activeFilter === 'level' && (
-                            <div className='absolute left-0 mt-2 w-52 bg-white shadow-lg z-10 rounded-lg overflow-hidden'>
+                            <div className='absolute left-0 mt-2 bg-white shadow-lg rounded-md w-full'>
                                 {filterOptions.level.map((option) => (
                                     <div key={option} className='flex items-center p-3 cursor-pointer hover:bg-gray-200' onClick={() => handleOptionSelect('level', option)}>
                                         <input type='checkbox' className='mr-2' checked={isOptionSelected('level', option)} readOnly />
@@ -176,11 +201,11 @@ const CoursesPage = () => {
                     </div>
                     <div className='py-4 cursor-pointer relative'>
                         <div onClick={() => handleFilterClick('price')} className="hover:text-[rgb(8,81,63)]">
-                            <span className='text-lg font-semibold'>Price</span>
+                            <span className='text-xl font-semibold'>Price</span>
                             <i className='fa-solid fa-angle-down ml-2'></i>
                         </div>
                         {activeFilter === 'price' && (
-                            <div className='absolute left-0 mt-2 w-52 bg-white shadow-lg z-10 rounded-lg overflow-hidden'>
+                            <div className='absolute left-0 mt-2 bg-white shadow-lg rounded-md w-full'>
                                 {filterOptions.price.map((option) => (
                                     <div key={option} className='flex items-center p-3 cursor-pointer hover:bg-gray-200' onClick={() => handleOptionSelect('price', option)}>
                                         <input type='checkbox' className='mr-2' checked={isOptionSelected('price', option)} readOnly />
@@ -192,16 +217,24 @@ const CoursesPage = () => {
                     </div>
                 </div>
 
-                <div className='mt-16 2xl:px-20 xl-custom:px-18 xl:px-16 lg-custom:px-14 lg:px-12 md-custom:px-10 px-6'>
-                    <div className={`grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10`}>
-                        {courses.map((course) => (
-                            <Course2 key={course.id} course={course} className="shadow-lg rounded-lg hover:shadow-xl transition-all duration-300 ease-in-out" />
-                        ))}
-                    </div>
+                {/* Course Cards Section */}
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12 mt-10'>
+                    {visibleCourses.map((course) => (
+                        <Course2 key={course.id} course={course} />
+                    ))}
                 </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                    <Pagination
+                        totalPages={totalPages}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                    />
+                )}
             </div>
         </div>
     );
-}
+};
 
 export default CoursesPage;
