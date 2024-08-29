@@ -10,7 +10,6 @@ const Courses = () => {
     const fetchCourses = () => {
         api.get('/courses/')
             .then(response => {
-                console.log(response.data);
                 setCourses(response.data);
             })
             .catch(error => {
@@ -45,8 +44,10 @@ const Courses = () => {
         };
     }, []);
 
+    const filteredCourses = courses.filter(course => course.type === 'best');
+
     const handleNext = () => {
-        if (index + coursesPerRow < courses.length) {
+        if (index + coursesPerRow < filteredCourses.length) {
             setIndex(index + 1);
         }
     };
@@ -57,7 +58,8 @@ const Courses = () => {
         }
     };
 
-    const visibleCourses = courses.slice(index, index + coursesPerRow);
+    // Filtering courses before slicing them
+    const coursesToDisplay = filteredCourses.slice(index, index + coursesPerRow);
 
     return (
         <div className='2xl:px-24 xl-custom:px-20 xl:px-16 lg-custom:px-14 lg:px-12 md-custom:px-10 px-8'>
@@ -79,13 +81,13 @@ const Courses = () => {
                     {/* Next Button */}
                     <i
                         onClick={handleNext}
-                        className={`border-2 ${index + coursesPerRow >= courses.length ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} border-yellow-600 grid place-items-center rounded-full h-14 w-14 fa-solid fa-chevron-right hover:bg-yellow-600 hover:text-white text-yellow-600`}
+                        className={`border-2 ${index + coursesPerRow >= filteredCourses.length ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} border-yellow-600 grid place-items-center rounded-full h-14 w-14 fa-solid fa-chevron-right hover:bg-yellow-600 hover:text-white text-yellow-600`}
                     ></i>
                 </div>
             </div>
             {/* Courses Container */}
             <div className={`grid lg:grid-cols-${coursesPerRow} sm:grid-cols-${coursesPerRow === 3 ? 2 : coursesPerRow} grid-cols-1 gap-8 md:mt-10 mt-14 transition-transform duration-500 ease-in-out transform translate-x-${-index * (100 / coursesPerRow)}%`}>
-                {visibleCourses.map((course) => (
+                {coursesToDisplay.map((course) => (
                     <Course key={course.id} course={course} />
                 ))}
             </div>
