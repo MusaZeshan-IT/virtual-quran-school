@@ -4,6 +4,7 @@ import api from '../apis/api';
 import CourseBg from '../assets/courses/course-bg.jpg';
 import NotFoundPage from './NotFoundPage';
 import Spinner from '../components/Spinner';
+import Hero from '../components/shared/Hero';
 
 const CourseDetails = () => {
     const { courseUrlName } = useParams();
@@ -58,18 +59,7 @@ const CourseDetails = () => {
 
     return (
         <div>
-            <section className="relative bg-cover bg-center h-96 grid place-items-center" style={{ backgroundImage: `url(${CourseBg})` }}>
-                <div>
-                    <h2 className="text-5xl font-semibold font-poppins tracking-wide text-white">{course.name}</h2>
-                    <div className='text-white font-semibold tracking-wide font-poppins flex justify-center mt-6'>
-                        <Link to="/">
-                            <span>Home</span>
-                        </Link>
-                        <span className='mx-3'>-</span>
-                        <span>{course.name}</span>
-                    </div>
-                </div>
-            </section>
+            <Hero pageName={course.name} pageSecondName="Course Details"/>
             <div className='my-28 2xl:px-36 xl-custom:px-32 xl:px-28 lg-custom:px-24 lg:px-20 md-custom:px-16 px-8'>
                 <div className="flex lg:flex-row flex-col gap-16 justify-between">
                     <div className='lg:w-[70%] font-poppins'>

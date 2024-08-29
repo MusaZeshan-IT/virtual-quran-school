@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Course from './Course';
 import api from '../../apis/api';
-import Spinner from '../Spinner';
 
 const Courses = () => {
     const [courses, setCourses] = useState([]);

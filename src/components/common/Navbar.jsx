@@ -41,15 +41,19 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
     const username = localStorage.getItem('username');
 
     return (
-        <div className='bg-[rgb(8,81,63)] h-[90px] px-10 flex justify-between items-center'>
+        <div className='bg-[rgb(8,81,63)] h-[90px] xs:px-10 2xs-custom:px-8 px-6 flex justify-between items-center'>
             <div className='flex items-center'>
-                <div className='relative'>
+                <div className='relative sm:right-0 xs-custom:right-2 xs:right-3 2xs-custom:right-4 2xs:right-5'>
                     <img className='h-28 mb-4' src={TopBanner} alt="Top Banner" />
                     <img className='h-[72px] w-[72px] absolute top-[43%] left-1/2 transform -translate-x-1/2 -translate-y-1/2' src={AllahName} alt="Allah Name" />
                 </div>
                 <ul className='hidden lg:flex xl:ms-16 lg-custom:ms-14 ms-12 xl:gap-x-9 lg-custom:gap-x-8 lg:gap-x-7 gap-x-5 text-lg text-white font-poppins'>
-                    <Link to="/"><li>Home</li></Link>
-                    <Link><li className='hover:cursor-not-allowed'>Courses</li></Link>
+                    <Link to="/">
+                        <li>Home</li>
+                    </Link>
+                    <Link to="/courses">
+                        <li className=''>Courses</li>
+                    </Link>
                     <Link><li className='hover:cursor-not-allowed'>Blog</li></Link>
                     <Link><li className='hover:cursor-not-allowed'>About</li></Link>
                     <Link><li className='hover:cursor-not-allowed'>Contact</li></Link>

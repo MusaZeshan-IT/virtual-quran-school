@@ -5,7 +5,7 @@ import Hero from '../components/shared/Hero';
 const NotFoundPage = () => {
     return (
         <div>
-            <Hero />
+            <Hero pageName="404 Page Not Found" pageSecondName="404 Not Found" />
             <div className='my-28 2xl:px-36 xl-custom:px-32 xl:px-28 lg-custom:px-24 lg:px-20 md-custom:px-16 px-8'>
                 <div className="flex lg:flex-row flex-col gap-16 items-center justify-center">
                     <div className='lg:w-[70%] font-poppins'>

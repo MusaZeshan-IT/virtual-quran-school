@@ -2,12 +2,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/common/Navbar';
 import HomePage from './pages/HomePage';
 import Footer from './components/common/Footer';
-import CourseDetails from './pages/CourseDetails';
+import CourseDetails from './pages/CourseDetailsPage';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import { useEffect, useState } from 'react';
-import Checkout from './pages/Checkout'
+import Checkout from './pages/CheckoutPage'
 import NotFoundPage from './pages/NotFoundPage'
+import CoursesPage from './pages/CoursesPage';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,6 +33,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="/courses" element={<CoursesPage />} />
           <Route path="/courses/:courseUrlName" element={<CourseDetails />} />
         </Routes>
         <Footer />

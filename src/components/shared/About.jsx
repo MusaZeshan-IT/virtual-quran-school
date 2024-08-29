@@ -8,7 +8,7 @@ const About = () => {
         <div>
             <div className='flex flex-col items-center'>
                 <img className='h-14 w-14' src={StarGoldIcon} alt="" />
-                <h2 className='font-aladin tracking-[1.5px] text-gray-500 mt-3 lg:text-2xl sm:text-[22px] text-[20px]'>WELCOME TO THE VIRTUAL QURAN SCHOOL</h2>
+                <h2 className='font-aladin text-center tracking-[1.5px] text-gray-500 mt-3 lg:text-2xl sm:text-[22px] text-[20px]'>WELCOME TO THE VIRTUAL QURAN SCHOOL</h2>
                 <h3 className='lg-custom:text-6xl lg:text-[55px] sm:text-[54px] xs:text-[49px] 2xs-custom:text-[42px] text-[33px] font-philosopher text-center lg:mt-3 mt-2 lg-custom:leading-[58px] sm:leading-[54px] xs:leading-[49px] 2xs-custom:leading-[42px] 2xs-custom:block hidden'>IN THE NAME OF ALLAH <br /> THE BENEFICIENT THE MERCIFUL</h3>
                 <h3 className='2xs-custom:hidden block font-philosopher text-center text-[40px] leading-[40px]'>IN THE NAME OF ALLAH THE BENEFICIENT THE MERCIFUL</h3>
             </div>
