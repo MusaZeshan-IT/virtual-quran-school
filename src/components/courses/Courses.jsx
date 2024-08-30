@@ -44,7 +44,7 @@ const Courses = () => {
         };
     }, []);
 
-    const filteredCourses = courses.filter(course => course.type === 'best');
+    const filteredCourses = courses.filter(course => course.type === 'top');
 
     const handleNext = () => {
         if (index + coursesPerRow < filteredCourses.length) {

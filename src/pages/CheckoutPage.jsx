@@ -42,7 +42,7 @@ const Checkout = () => {
                             <div className='mb-2'>
                                 <p className='text-gray-700 text-[15px] font-poppins'><span className='text-[16.2px] font-semibold font-sans text-gray-900'>Note:</span> Please transfer the exact amount to the account number provided. Email a screenshot of your receipt and your full name to the email below.</p>
                             </div>
-                            <p className='text-gray-700 text-[15px] font-poppins'><span className='text-[16.2px] font-semibold font-sans text-gray-900'>Email:</span> bilalsabir386@gmail.com</p>
+                            <p className='text-gray-700 text-[15px] font-poppins'><span className='text-[16.2px] font-semibold font-sans text-gray-900'>Email:</span> virtualquran.billing@gmail.com</p>
                         </div>
                     </div>
 
@@ -51,21 +51,25 @@ const Checkout = () => {
                             <h2 className='text-3xl font-semibold text-white'>Course Details</h2>
                         </div>
                         <div className='p-6'>
-                            <div className='mb-4'>
+                            <div className='mb-3 mt-1'>
                                 <h3 className='text-[19px] tracking-tight font-semibold text-gray-700'>Name:</h3>
                                 <p className='text-[16.5px] text-gray-600 font-poppins'>{course.name}</p>
                             </div>
-                            <div className='mb-4'>
+                            <div className='mb-3 mt-1'>
+                                <h3 className='text-[19px] tracking-tight font-semibold text-gray-700'>Level:</h3>
+                                <p className='text-[16.5px] text-gray-600 font-poppins'>{course.level}</p>
+                            </div>
+                            <div className='mb-3'>
                                 <h3 className='text-[19px] tracking-tight font-semibold text-gray-700'>Instructor:</h3>
                                 <p className='text-[16.5px] text-gray-600 font-poppins'>{course.tutor}</p>
                             </div>
-                            <div className='mb-6'>
+                            <div className='mb-4'>
                                 <h3 className='text-[19px] tracking-tight font-semibold text-gray-700'>Course Duration:</h3>
                                 <p className='text-[16.5px] text-gray-600 font-poppins'>{course.duration}</p>
                             </div>
-                            <div className='bg-gray-200 shadow-[0_0_3px_0.4px_rgba(0,0,0,0.8)] inline-block px-4 py-2 rounded-md'>
-                                <h3 className='text-[20px] tracking-tight inline-block font-semibold text-gray-800'>Price:</h3>
-                                <p className='ms-[6px] text-[18.5px] inline-block text-gray-800 font-poppins'>{course.fee}$</p>
+                            <div>
+                                <span className='text-[21px] tracking-tight font-semibold text-gray-800'>Fare:</span>
+                                <span className='text-[19px] text-gray-700 font-poppins'> {course.fee}$</span>
                             </div>
                         </div>
                     </div>
