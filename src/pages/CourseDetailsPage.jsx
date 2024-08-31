@@ -173,7 +173,7 @@ const CourseDetails = () => {
                                 <ul className="flex flex-wrap gap-x-4 gap-y-8">
                                     {course.tags && course.tags.map((tag, index) => (
                                         <li key={index}>
-                                            <a className="text-gray-900 font-semibold tracking-wide border border-gray-200 px-5 py-2 rounded-md" href={`/course-tag/${tag}`}>
+                                            <a className="text-gray-900 font-semibold tracking-wide border border-gray-300 px-5 py-2 rounded-md bg-[rgb(255,250,240)]" href={`/course-tag/${tag}`}>
                                                 {tag}
                                             </a>
                                         </li>
