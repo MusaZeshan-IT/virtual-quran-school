@@ -33,9 +33,10 @@ const CourseDetails = () => {
         };
     }, [courseUrlName]);
 
+
     const getCategories = (course) => {
         return course && course.categories && course.categories.length > 0
-            ? course.categories.join(', ')
+            ? course.categories.map(category => category).join(', ')
             : 'No categories available';
     };
 
@@ -64,27 +65,39 @@ const CourseDetails = () => {
                 <div className="flex lg:flex-row flex-col gap-16 justify-between">
                     <div className='lg:w-[70%] font-poppins'>
                         <h1 className='text-5xl mt-10 font-semibold'>{course.name}</h1>
-                        <div className='flex gap-x-3 mt-4 border-b-2 pb-7'>
-                            <div className="rounded-full w-10 h-10 bg-emerald-700 flex items-center justify-center">
-                                <span className="text-lg text-white">A</span>
+                        <div className='2xs-custom:flex 2xs-custom:flex-row flex-col gap-x-3 mt-4 border-b-2 pb-7'>
+                            <div className='2xs-custom:block flex gap-x-2 items-center'>
+                                <div className='w-10'>
+                                    <div className="rounded-full w-10 h-10 bg-emerald-700 flex items-center justify-center">
+                                        <span className="text-lg text-white">A</span>
+                                    </div>
+                                </div>
+                                <p className='2xs-custom:hidden block font-medium text-gray-700'><span className='text-gray-500'>By</span> admin</p>
                             </div>
-                            <div className='flex flex-wrap gap-x-4 items-center'>
-                                <p className='font-medium text-gray-800'><span className='text-gray-500'>By</span> admin</p>
-                                <p className='font-medium text-gray-800'><span className='text-gray-500'>Categories:</span> {getCategories(course)}</p>
-                                <p className='font-medium text-gray-800'><span className='text-gray-500'>Instructor:</span> {course.tutor}</p>
+                            <div className='md:flex hidden flex-wrap gap-x-3 gap-y-[2px] items-center'>
+                                <p className='font-medium text-gray-700'><span className='text-gray-500'>By</span> admin</p>
+                                <p className='font-medium text-gray-700'><span className='text-gray-500'>Categories:</span> {getCategories(course)}</p>
+                                <p className='font-medium text-gray-700'><span className='text-gray-500'>Instructor:</span> {course.tutor}</p>
                             </div>
+                            <div className='md:hidden 2xs-custom:flex hidden flex-wrap gap-x-3 gap-y-[2px] items-center'>
+                                <p className='font-medium text-gray-700'><span className='text-gray-500'>By</span> admin</p>
+                                <p className='font-medium text-gray-700'><span className='text-gray-500'>Instructor:</span> {course.tutor}</p>
+                                <p className='font-medium text-gray-700'><span className='text-gray-500'>Categories:</span> {getCategories(course)}</p>
+                            </div>
+                            <p className='2xs-custom:hidden mt-2 font-medium text-gray-700'><span className='text-gray-500'>Instructor:</span> {course.tutor}</p>
+                            <p className='2xs-custom:hidden mt-[2px] font-medium text-gray-700'><span className='text-gray-500'>Categories:</span> {getCategories(course)}</p>
                         </div>
                         <p className='mt-7 w-[95%] leading-[27px] text-[16.5px] text-gray-500'>{course.course_description}</p>
                         <div className='bg-[rgb(248,242,242)] p-2 rounded-md flex gap-x-3 mt-9'>
                             <button
-                                className={`py-3 font-semibold tracking-wide rounded-md px-7 text-xl ${activeTab === 'info' ? 'bg-[rgb(255,208,80)]' : 'bg-white'}`}
+                                className={`2xs-custom:py-3 py-2 font-semibold tracking-wide rounded-md 2xs-custom:px-7 px-5 2xs-custom:text-xl text-lg ${activeTab === 'info' ? 'bg-[rgb(255,208,80)]' : 'bg-white'}`}
                                 type="button"
                                 onClick={() => setActiveTab('info')}
                             >
                                 Course Info
                             </button>
                             <button
-                                className={`py-3 font-semibold tracking-wide rounded-md px-7 text-xl ${activeTab === 'reviews' ? 'bg-[rgb(255,208,80)]' : 'bg-white'}`}
+                                className={`2xs-custom:py-3 py-2 font-semibold tracking-wide rounded-md 2xs-custom:px-7 px-5 2xs-custom:text-xl text-lg ${activeTab === 'reviews' ? 'bg-[rgb(255,208,80)]' : 'bg-white'}`}
                                 type="button"
                                 onClick={() => setActiveTab('reviews')}
                             >
@@ -196,7 +209,6 @@ const CourseDetails = () => {
                     </div>
                 </div>
             </div>
-            {/* <ConfirmationModal isOpen={isModalOpen} onClose={handleCloseModal} course={course} /> */}
         </div>
     );
 };
