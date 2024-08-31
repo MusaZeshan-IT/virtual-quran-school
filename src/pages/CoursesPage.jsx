@@ -63,7 +63,7 @@ const CoursesPage = () => {
             filtered = filtered.filter(course => course.type === selectedOption.toLowerCase());
         }
 
-        if (selectedOptions.level && selectedOptions.level !== 'All Levels') {
+        if (selectedOptions.level) {
             filtered = filtered.filter(course => course.level === selectedOptions.level);
         }
 
@@ -127,7 +127,7 @@ const CoursesPage = () => {
     // Show a custom "no courses found" message
     if (filteredCourses.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center h-[60vh]">
+            <div className="flex flex-col items-center justify-center h-[60vh] xs:px-6 px-3">
                 <h2 className="text-4xl font-black font-poppins text-black mb-4 text-center">No Courses Found</h2>
                 <p className="text-lg text-gray-700 font-poppins text-center">Try adjusting your filters to find the course that suits you best.</p>
                 <button

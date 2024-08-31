@@ -8,11 +8,13 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [error, setError] = useState(''); // New state for error messages
+    const [isSubmitting, setIsSubmitting] = useState(false); // State for loading
 
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
         try {
             const apiUrl = '/accounts/register/';
             const response = await loginSignupApi.post(apiUrl, {
@@ -34,6 +36,8 @@ const Register = () => {
         } catch (err) {
             console.error('Error registering user:', err);
             setError('Something went wrong. Failed to register user. Please check your input and try again.');
+        } finally {
+            setIsSubmitting(false);
         }
     }
 
@@ -92,7 +96,9 @@ const Register = () => {
                         placeholder="Confirm Password"
                         required
                     />
-                    <button className='bg-[rgb(29,142,90)] rounded-md font-poppins text-white w-full py-3 mt-10' type="submit">Register</button>
+                    <button disabled={isSubmitting} className={`bg-[rgb(29,142,90)] ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''} rounded-md font-poppins text-white w-full py-3 mt-10`} type="submit">
+                        {isSubmitting ? 'Registering...' : 'Register'}
+                    </button>
                     <p className='font-poppins text-[16px] mt-5 text-center text-[rgb(99,97,97)] tracking-tight'>Already have an account?
                         <Link to="/login">
                             <span className='ms-2 text-[13.4px] relative bottom-[1px] font-semibold tracking-wider text-black'>Login Now</span>
