@@ -22,24 +22,26 @@ const Course = ({ course }) => {
             <h2 className='text-[26px] font-semibold leading-[30px]'>{course.name}</h2>
             <div className='border-y mt-4 py-1 border-gray-300 flex justify-between'>
                 <div className="flex flex-col">
-                    <span className='text-amber-600 text-[17px] font-bold'>{course.duration}</span>
+                    <span className='text-emerald-600 text-[17px] font-bold'>{course.duration}</span>
                     <span className='font-semibold'>Duration</span>
                 </div>
                 <div className="flex flex-col">
-                    <span className='text-amber-600 text-[17px] font-bold'>{convertTo12HourFormat(course.class_time)}</span>
+                    <span className='text-emerald-600 text-[17px] font-bold'>{convertTo12HourFormat(course.class_time)}</span>
                     <span className='font-semibold'>Class Time</span>
                 </div>
                 <div className="flex flex-col">
-                    <span className='text-amber-600 text-[17px] font-bold'>{course.enrolled}</span>
+                    <span className='text-emerald-600 text-[17px] font-bold'>{course.enrolled}</span>
                     <span className='font-semibold'>Enroll</span>
                 </div>
             </div>
             <p className='text-[rgb(133,128,128)] mt-6'>{course.brief_description}</p>
             <div className="flex justify-between items-end">
                 <Link to={`/courses/${course.slug}/`}>
-                    <button className='bg-yellow-600 text-white h-11 grid place-items-center text-sm font-semibold px-5 rounded-[7px] mt-6'>Study Now</button>
+                    <button className='bg-emerald-600 text-white h-11 grid place-items-center text-sm font-semibold px-5 rounded-[7px] mt-6'>Study Now</button>
                 </Link>
-                <span className='bg-[rgb(252,252,252)] shadow-[0px_0px_1px_1px_rgb(0,0,0)] text-lg font-semibold px-5 py-[10px] rounded-[7px] mt-6'>$ {course.fee}</span>
+                <div className='bg-[rgb(226,236,232)] px-5 py-[9px] rounded-[7px] mt-6'>
+                    <span className='text-[16.5px] font-inter font-semibold border-b-[1px] border-gray-500'>{course.fee}<span className='ms-[2px]'>$</span></span>
+                </div>
             </div>
         </div>
     );
