@@ -54,8 +54,12 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                     <Link to="/courses">
                         <li>Courses</li>
                     </Link>
-                    <Link><li className='hover:cursor-not-allowed'>Blog</li></Link>
-                    <Link><li className='hover:cursor-not-allowed'>About</li></Link>
+                    <Link to="/blog">
+                        <li>Blog</li>
+                    </Link>
+                    <Link to="/about">
+                        <li>About</li>
+                    </Link>
                     <Link><li className='hover:cursor-not-allowed'>Contact</li></Link>
                 </ul>
             </div>
