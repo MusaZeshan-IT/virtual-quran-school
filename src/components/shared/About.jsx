@@ -2,8 +2,9 @@ import React from 'react';
 import StarGoldIcon from '../../assets/star-gold.png';
 import Vision from '../../assets/vision-icon.png';
 import Mission from '../../assets/mission-icon.png';
+import { Link } from 'react-router-dom';
 
-const About = () => {
+const About = ({ isAboutPage = false }) => {
     return (
         <div>
             <div className='flex flex-col items-center'>
@@ -17,7 +18,13 @@ const About = () => {
                     <p className='md:text-[18px] text-[19.5px] md:text-start text-center text-gray-500 font-poppins leading-[32px]'>
                         At Virtual Quran School, we provide personalized online Quranic education that is high-quality and accessible. Our educators guide students worldwide in their spiritual journey, helping them connect deeply with the Quran. We aim to make each lesson engaging, ensuring learners grow in their understanding and faith from the comfort of their homes.
                     </p>
-                    <button type='button' className='hover:shadow-none hover:text-[rgb(219,158,48)] hover:px-12 transition-all duration-500 ease-linear border-2 border-[rgb(219,158,48)] text-[18px] font-poppins py-3 px-10 rounded-[30px] shadow-[7px_5.5px_1px_0.1px_rgba(219,158,48,0.6)] mt-10'>Read More</button>
+                    {isAboutPage ? (
+                        <button type='button' className='hover:shadow-none hover:text-[rgb(219,158,48)] hover:px-12 transition-all duration-500 ease-linear border-2 border-[rgb(219,158,48)] text-[18px] font-poppins py-3 px-10 rounded-[30px] shadow-[7px_5.5px_1px_0.1px_rgba(219,158,48,0.6)] mt-10'>Contact Us</button>
+                    ) : (
+                        <Link to="/about">
+                            <button type='button' className='hover:shadow-none hover:text-[rgb(219,158,48)] hover:px-12 transition-all duration-500 ease-linear border-2 border-[rgb(219,158,48)] text-[18px] font-poppins py-3 px-10 rounded-[30px] shadow-[7px_5.5px_1px_0.1px_rgba(219,158,48,0.6)] mt-10'>Read More</button>
+                        </Link>
+                    )}
                 </div>
                 <div className='md:w-1/2 flex flex-col md:gap-y-10 gap-y-10 md:mt-0 mt-16'>
                     <div className='flex sm:flex-row flex-col items-center'>
