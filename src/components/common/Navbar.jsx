@@ -60,7 +60,9 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                     <Link to="/about">
                         <li>About</li>
                     </Link>
-                    <Link><li className='hover:cursor-not-allowed'>Contact</li></Link>
+                    <Link to="/contact">
+                        <li>Contact</li>
+                    </Link>
                 </ul>
             </div>
             <div className='items-center flex'>
@@ -104,19 +106,19 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                 <i className='fa-solid fa-xmark flex justify-end text-2xl text-[rgb(25,25,25)]' onClick={toggleSidebar}></i>
                 <ul className='flex flex-col font-poppins mt-6 gap-y-6 text-black text-lg'>
                     <div className='border-b-2 pb-2 border-[rgb(209,205,205)]'>
-                        <Link to="/" onClick={toggleSidebar}><li className=''>Home</li></Link>
+                        <Link to="/" onClick={toggleSidebar}><li>Home</li></Link>
                     </div>
                     <div className='border-b-2 pb-2 border-[rgb(209,205,205)]'>
-                        <Link to="/courses" onClick={toggleSidebar}><li className='hover:cursor-not-allowed'>Courses</li></Link>
+                        <Link to="/courses" onClick={toggleSidebar}><li>Courses</li></Link>
                     </div>
                     <div className='border-b-2 pb-2 border-[rgb(209,205,205)]'>
-                        <Link to="/blog" onClick={toggleSidebar}><li className='hover:cursor-not-allowed'>Blog</li></Link>
+                        <Link to="/blog" onClick={toggleSidebar}><li>Blog</li></Link>
                     </div>
                     <div className='border-b-2 pb-2 border-[rgb(209,205,205)]'>
-                        <Link to="/about" onClick={toggleSidebar}><li className='hover:cursor-not-allowed'>About</li></Link>
+                        <Link to="/about" onClick={toggleSidebar}><li>About</li></Link>
                     </div>
                     <div className='border-b-2 pb-2 border-[rgb(209,205,205)]'>
-                        <Link onClick={(e) => e.preventDefault()}><li className='hover:cursor-not-allowed'>Contact</li></Link>
+                        <Link to="/contact" onClick={toggleSidebar}><li>Contact</li></Link>
                     </div>
                 </ul>
                 <div className='mt-12'>

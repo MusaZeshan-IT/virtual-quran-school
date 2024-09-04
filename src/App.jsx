@@ -11,6 +11,7 @@ import NotFoundPage from './pages/NotFoundPage'
 import CoursesPage from './pages/CoursesPage';
 import BlogPage from './pages/BlogPage';
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,6 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/404" element={<NotFoundPage />} />
           <Route path="/checkout" element={<Checkout />} />

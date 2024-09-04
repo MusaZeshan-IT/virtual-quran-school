@@ -10,14 +10,10 @@ const BlogPage = () => {
         api.get('/posts/')
             .then(response => {
                 setPosts(response.data);
-                console.log(response.data);
             })
             .catch(error => {
                 console.error('Error fetching blog posts:', error);
             })
-            .finally(() => {
-                console.log('Blog posts fetched successfully');
-            });
     };
 
     useEffect(() => {
