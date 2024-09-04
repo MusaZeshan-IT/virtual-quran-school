@@ -19,7 +19,10 @@ const About = ({ isAboutPage = false }) => {
                         At Virtual Quran School, we provide personalized online Quranic education that is high-quality and accessible. Our educators guide students worldwide in their spiritual journey, helping them connect deeply with the Quran. We aim to make each lesson engaging, ensuring learners grow in their understanding and faith from the comfort of their homes.
                     </p>
                     {isAboutPage ? (
-                        <button type='button' className='hover:shadow-none hover:text-[rgb(219,158,48)] hover:px-12 transition-all duration-500 ease-linear border-2 border-[rgb(219,158,48)] text-[18px] font-poppins py-3 px-10 rounded-[30px] shadow-[7px_5.5px_1px_0.1px_rgba(219,158,48,0.6)] mt-10'>Contact Us</button>
+                        <Link to="/contact">
+                            <button type='button' className='hover:shadow-none hover:text-[rgb(219,158,48)] hover:px-12 transition-all duration-500 ease-linear border-2 border-[rgb(219,158,48)] text-[18px] font-poppins py-3 px-10 rounded-[30px] shadow-[7px_5.5px_1px_0.1px_rgba(219,158,48,0.6)] mt-10'>Contact Us</button>
+                        </Link>
+
                     ) : (
                         <Link to="/about">
                             <button type='button' className='hover:shadow-none hover:text-[rgb(219,158,48)] hover:px-12 transition-all duration-500 ease-linear border-2 border-[rgb(219,158,48)] text-[18px] font-poppins py-3 px-10 rounded-[30px] shadow-[7px_5.5px_1px_0.1px_rgba(219,158,48,0.6)] mt-10'>Read More</button>

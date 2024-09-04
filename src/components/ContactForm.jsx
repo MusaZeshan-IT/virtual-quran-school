@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import api from '../apis/api';
 
 const ContactForm = () => {
     const [isFocused, setIsFocused] = useState({
@@ -20,7 +21,25 @@ const ContactForm = () => {
 
     function sendEmail(e) {
         e.preventDefault();
-        // Send email logic here
+
+        const formData = {
+            name: formRef.current.name.value,
+            email_from: formRef.current.email_from.value,
+            subject: formRef.current.subject.value,
+            message: formRef.current.message.value,
+        };
+
+        console.log(formData);
+
+        api.post('/contact/', formData)
+            .then((response) => {
+                console.log(response);
+                formRef.current.reset();
+            })
+            .catch((error) => {
+                console.error('There was an error sending the message:', error)
+                alert('Failed to send message. Please try again later.')
+            })
     }
 
     return (
@@ -114,9 +133,7 @@ const ContactForm = () => {
                     ></textarea>
                 </div>
                 {/* Submit Button */}
-                <button
-                    className='w-[155px] mt-3 transition-all duration-200 ease-in bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg py-3 px-5 text-[13px] tracking-widest'
-                >
+                <button type="submit" className='w-[155px] mt-3 transition-all duration-200 ease-in bg-emerald-600 hover:bg-emerald-700 text-white font-inter tracking-[0.8px] font-semibold rounded-lg py-3 px-5 italic text-[12px]'>
                     SEND MESSAGE
                 </button>
             </form>
