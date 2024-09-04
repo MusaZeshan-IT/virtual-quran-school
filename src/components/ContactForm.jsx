@@ -8,6 +8,7 @@ const ContactForm = () => {
         subject: false,
         message: false,
     });
+    const [isSending, setIsSending] = useState(false);
 
     const formRef = useRef(null);
 
@@ -22,6 +23,8 @@ const ContactForm = () => {
     function sendEmail(e) {
         e.preventDefault();
 
+        setIsSending(true);
+
         const formData = {
             name: formRef.current.name.value,
             email_from: formRef.current.email_from.value,
@@ -32,14 +35,17 @@ const ContactForm = () => {
         console.log(formData);
 
         api.post('/contact/', formData)
-            .then((response) => {
-                console.log(response);
+            .then(() => {
                 formRef.current.reset();
             })
             .catch((error) => {
                 console.error('There was an error sending the message:', error)
                 alert('Failed to send message. Please try again later.')
             })
+            .finally(() => {
+                setIsSending(false);
+                alert('Message sent successfully!');
+            });
     }
 
     return (
@@ -133,8 +139,8 @@ const ContactForm = () => {
                     ></textarea>
                 </div>
                 {/* Submit Button */}
-                <button type="submit" className='w-[155px] mt-3 transition-all duration-200 ease-in bg-emerald-600 hover:bg-emerald-700 text-white font-inter tracking-[0.8px] font-semibold rounded-lg py-3 px-5 italic text-[12px]'>
-                    SEND MESSAGE
+                <button disabled={isSending} type="submit" className={`w-[155px] ${isSending ? 'opacity-75 cursor-not-allowed' : ''} mt-3 transition-all duration-200 ease-in bg-emerald-600 hover:bg-emerald-700 text-white font-inter tracking-[0.8px] font-semibold rounded-lg py-3 px-5 italic text-[13px]`}>
+                    {isSending ? 'Sending...' : 'Send Message'}
                 </button>
             </form>
         </div>
