@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Course2 from '../components/courses/Course2';
-import api from '../apis/api';
-import Hero from '../components/shared/Hero';
-import Pagination from '../components/Pagination';
-import Spinner from '../components/Spinner';
-import FilterSidebar from '../components/courses/FilterSidebar';
-import FilterBar from '../components/courses/FilterBar';
+import Course2 from '../../components/courses/Course2';
+import api from '../../apis/api';
+import Hero from '../../components/shared/Hero';
+import Pagination from '../../components/Pagination';
+import Spinner from '../../components/Spinner';
+import FilterSidebar from '../../components/courses/FilterSidebar';
+import FilterBar from '../../components/courses/FilterBar';
 
 // Define filter options
 const filterOptions = {

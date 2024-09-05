@@ -32,8 +32,6 @@ const ContactForm = () => {
             message: formRef.current.message.value,
         };
 
-        console.log(formData);
-
         api.post('/contact/', formData)
             .then(() => {
                 formRef.current.reset();

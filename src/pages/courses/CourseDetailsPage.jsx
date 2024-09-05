@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import api from '../apis/api';
-import CourseBg from '../assets/courses/course-bg.jpg';
-import NotFoundPage from './NotFoundPage';
-import Spinner from '../components/Spinner';
-import Hero from '../components/shared/Hero';
+import api from '../../apis/api';
+import NotFoundPage from '../NotFoundPage';
+import Spinner from '../../components/Spinner';
+import Hero from '../../components/shared/Hero';
 
 const CourseDetails = () => {
     const { courseUrlName } = useParams();

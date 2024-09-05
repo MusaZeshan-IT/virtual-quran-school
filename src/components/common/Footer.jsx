@@ -12,7 +12,7 @@ const Footer = () => {
                 <div
                     className="absolute inset-0 bg-[rgb(0,83,37)] opacity-70"
                 ></div>
-                <div className="relative lg:top-[70px] top-16 z-10 2xl:px-32 xl-custom:px-24 xl:px-16 lg-custom:px-10 lg:px-8 md:px-16 px-8 text-white">
+                <div className="relative lg:top-[70px] top-16 z-10 2xl:px-32 xl-custom:px-24 xl:px-16 lg-custom:px-10 lg:px-8 md:px-16 sm:px-8 xs:px-6 px-4 text-white">
                     <div className='lg:hidden flex justify-center'>
                         <svg fill='rgb(219, 158, 48)' className="fill-theme md:w-[25%] sm-custom:w-[30%] sm:w-[40%] w-[50%]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 281">
                             <g>
