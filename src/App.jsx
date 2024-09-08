@@ -33,13 +33,13 @@ function App() {
         <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:slug" element={<BlogDetailPage />} />
+          {/* <Route path="/blog" element={<BlogPage />} /> */}
+          {/* <Route path="/blog/:slug" element={<BlogDetailPage />} /> */}
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/courses/:courseUrlName" element={<CourseDetails />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/404" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />

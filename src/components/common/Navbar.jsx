@@ -54,15 +54,15 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                     <Link to="/courses">
                         <li>Courses</li>
                     </Link>
-                    <Link to="/blog">
-                        <li>Blog</li>
-                    </Link>
                     <Link to="/about">
                         <li>About</li>
                     </Link>
                     <Link to="/contact">
                         <li>Contact</li>
                     </Link>
+                    {/* <Link to="/blog"> */}
+                        <li className='text-[rgb(255,255,255,0.8)] hover:text-[rgba(255,255,255,0.7)]'>Blog</li>
+                    {/* </Link> */}
                 </ul>
             </div>
             <div className='items-center flex'>
