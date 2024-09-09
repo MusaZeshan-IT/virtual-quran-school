@@ -69,28 +69,17 @@ const CourseDetails = () => {
             <div className='my-28 2xl:px-36 xl-custom:px-32 xl:px-28 lg-custom:px-24 lg:px-20 md-custom:px-16 px-8'>
                 <div className="flex lg:flex-row flex-col gap-16 justify-between">
                     <div className='lg:w-[70%] font-poppins'>
-                        <h1 className='text-5xl mt-10 font-semibold'>{course.name}</h1>
-                        <div className='2xs-custom:flex 2xs-custom:flex-row flex-col gap-x-3 mt-4 border-b-2 pb-7'>
-                            <div className='2xs-custom:block flex gap-x-2 items-center'>
-                                <div className='w-10'>
-                                    <div className="rounded-full w-10 h-10 bg-emerald-700 flex items-center justify-center">
-                                        <span className="text-lg text-white">A</span>
-                                    </div>
+                        <h1 className='sm:text-5xl xs-custom:text-[40px] text-[32px] leading-tight mt-10 font-semibold'>{course.name}</h1>
+                        <div className='flex flex-row gap-x-3 mt-4 border-b-2 pb-7'>
+                            <div className='w-10'>
+                                <div className="rounded-full w-10 h-10 bg-emerald-700 flex items-center justify-center">
+                                    <span className="text-lg text-white">A</span>
                                 </div>
-                                <p className='2xs-custom:hidden block font-medium text-gray-700'><span className='text-gray-500'>By</span> admin</p>
                             </div>
-                            <div className='md:flex hidden flex-wrap gap-x-3 gap-y-[2px] items-center'>
+                            <div className='flex flex-wrap gap-x-3 gap-y-[2px] items-center'>
                                 <p className='font-medium text-gray-700'><span className='text-gray-500'>By</span> admin</p>
                                 <p className='font-medium text-gray-700'><span className='text-gray-500'>Categories:</span> {getCategories(course)}</p>
-                                <p className='font-medium text-gray-700'><span className='text-gray-500'>Instructor:</span> {course.tutor}</p>
                             </div>
-                            <div className='md:hidden 2xs-custom:flex hidden flex-wrap gap-x-3 gap-y-[2px] items-center'>
-                                <p className='font-medium text-gray-700'><span className='text-gray-500'>By</span> admin</p>
-                                <p className='font-medium text-gray-700'><span className='text-gray-500'>Instructor:</span> {course.tutor}</p>
-                                <p className='font-medium text-gray-700'><span className='text-gray-500'>Categories:</span> {getCategories(course)}</p>
-                            </div>
-                            <p className='2xs-custom:hidden mt-2 font-medium text-gray-700'><span className='text-gray-500'>Instructor:</span> {course.tutor}</p>
-                            <p className='2xs-custom:hidden mt-[2px] font-medium text-gray-700'><span className='text-gray-500'>Categories:</span> {getCategories(course)}</p>
                         </div>
                         <p className='mt-7 w-[95%] leading-[27px] text-[16.5px] text-gray-500'>{course.course_description}</p>
                         <div className='bg-[rgb(248,242,242)] p-2 rounded-md flex gap-x-3 mt-9'>
