@@ -9,7 +9,7 @@ import FilterBar from '../../components/courses/FilterBar';
 
 // Define filter options
 const filterOptions = {
-    // sortBy: ['Special Courses', 'Normal Courses', 'Top Courses'],
+    sortBy: ['Special Courses', 'Normal Courses', 'Top Courses'],
     level: ['Beginner', 'Intermediate', 'Advanced', 'All Levels'],
     price: ['$50-$60', '$60-$70', '$70-$80'],
 };
@@ -21,7 +21,7 @@ const CoursesPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [selectedOptions, setSelectedOptions] = useState({
-        // sortBy: '',
+        sortBy: '',
         level: '',
         price: '',
     });
@@ -102,7 +102,7 @@ const CoursesPage = () => {
     // Clear all filters
     const handleClearFilters = () => {
         setSelectedOptions({
-            // sortBy: '',
+            sortBy: '',
             level: '',
             price: '',
         });
@@ -149,17 +149,17 @@ const CoursesPage = () => {
     return (
         <div className='bg-gradient-to-r from-[rgb(250,247,247)] via-gray-100 to-[rgb(250,247,247)] min-h-screen'>
             <Hero pageName="Our Courses" pageSecondName="Courses" className="mb-12" />
-            <div className='py-28 font-inter'>
+            <div className='my-24 font-inter'>
                 {/* Filter Button for Small Screens */}
-                <div onClick={toggleSidebar} className='flex md:hidden items-center justify-center gap-x-6 px-8 bg-white shadow-lg rounded-md mx-6 relative z-20'>
+                {/* <div onClick={toggleSidebar} className='flex md:hidden items-center justify-center gap-x-6 px-8 bg-white shadow-lg rounded-md mx-6 relative z-20'>
                     <div className='py-4 flex gap-x-3 items-center cursor-pointer hover:text-[rgb(8,81,63)]'>
                         <i className='fa-solid fa-filter text-lg'></i>
                         <span className='text-xl font-semibold'>Filter</span>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Filter Sidebar */}
-                {isSidebarOpen && (
+                {/* {isSidebarOpen && (
                     <FilterSidebar
                         toggleSidebar={toggleSidebar}
                         filterOptions={filterOptions}
@@ -169,10 +169,10 @@ const CoursesPage = () => {
                         handleOptionSelect={handleOptionSelect}
                         handleClearFilters={handleClearFilters}
                     />
-                )}
+                )} */}
 
                 {/* Filter Section for Medium and Larger Screens */}
-                <FilterBar
+                {/* <FilterBar
                     filterOptions={filterOptions}
                     activeFilter={activeFilter}
                     isOptionSelected={isOptionSelected}
@@ -180,7 +180,7 @@ const CoursesPage = () => {
                     handleOptionSelect={handleOptionSelect}
                     selectedOptions={selectedOptions}
                     handleClearFilters={handleClearFilters}
-                />
+                /> */}
 
                 {/* Course Cards Section */}
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 mt-10'>
