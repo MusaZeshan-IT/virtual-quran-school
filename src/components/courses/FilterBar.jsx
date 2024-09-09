@@ -7,7 +7,7 @@ const FilterBar = ({ activeFilter, filterOptions, handleFilterClick, handleClear
                 <i className='fa-solid fa-filter-circle-xmark text-lg'></i>
                 <span className='text-xl font-semibold'>Clear Filters</span>
             </div>
-            <div className='py-4 border-r border-gray-300 pr-4 cursor-pointer relative'>
+            {/* <div className='py-4 border-r border-gray-300 pr-4 cursor-pointer relative'>
                 <div onClick={() => handleFilterClick('sortBy')} className="hover:text-[rgb(8,81,63)]">
                     <span className='text-xl font-semibold'>Sort by</span>
                     <i className='fa-solid fa-angle-down ml-2'></i>
@@ -22,7 +22,7 @@ const FilterBar = ({ activeFilter, filterOptions, handleFilterClick, handleClear
                         ))}
                     </div>
                 )}
-            </div>
+            </div> */}
             <div className='py-4 border-r border-gray-300 pr-4 cursor-pointer relative'>
                 <div onClick={() => handleFilterClick('level')} className="hover:text-[rgb(8,81,63)]">
                     <span className='text-xl font-semibold'>Level</span>
@@ -39,7 +39,7 @@ const FilterBar = ({ activeFilter, filterOptions, handleFilterClick, handleClear
                     </div>
                 )}
             </div>
-            <div className='py-4 cursor-pointer relative'>
+            {/* <div className='py-4 cursor-pointer relative'>
                 <div onClick={() => handleFilterClick('price')} className="hover:text-[rgb(8,81,63)]">
                     <span className='text-xl font-semibold'>Price</span>
                     <i className='fa-solid fa-angle-down ml-2'></i>
@@ -54,7 +54,7 @@ const FilterBar = ({ activeFilter, filterOptions, handleFilterClick, handleClear
                         ))}
                     </div>
                 )}
-            </div>
+            </div> */}
         </div>
     );
 }

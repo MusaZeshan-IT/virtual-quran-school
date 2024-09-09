@@ -9,7 +9,7 @@ import FilterBar from '../../components/courses/FilterBar';
 
 // Define filter options
 const filterOptions = {
-    sortBy: ['Special Courses', 'Normal Courses', 'Top Courses'],
+    // sortBy: ['Special Courses', 'Normal Courses', 'Top Courses'],
     level: ['Beginner', 'Intermediate', 'Advanced', 'All Levels'],
     price: ['$50-$60', '$60-$70', '$70-$80'],
 };
@@ -21,7 +21,7 @@ const CoursesPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [selectedOptions, setSelectedOptions] = useState({
-        sortBy: '',
+        // sortBy: '',
         level: '',
         price: '',
     });
@@ -57,6 +57,9 @@ const CoursesPage = () => {
     // Apply multiple filters to the courses
     const filterCourses = () => {
         let filtered = [...courses]; // Start with all courses
+
+        // Exclude hidden courses
+        filtered = filtered.filter(course => !course.hidden);
 
         if (selectedOptions.sortBy) {
             const selectedOption = selectedOptions.sortBy.replace(" Courses", "");
@@ -99,7 +102,7 @@ const CoursesPage = () => {
     // Clear all filters
     const handleClearFilters = () => {
         setSelectedOptions({
-            sortBy: '',
+            // sortBy: '',
             level: '',
             price: '',
         });
