@@ -128,16 +128,20 @@ const CourseDetails = () => {
                                 <p>{course.level}</p>
                             </div>
                             <div className='flex gap-x-3 items-center'>
-                                <i className='fa-solid text-gray-600 fa-graduation-cap'></i>
+                                <i className='fa-solid text-gray-600 fa-user-graduate'></i>
                                 <p>{course.tutor}</p>
                             </div>
                             <div className='flex gap-x-3 items-center'>
                                 <i class="fa-solid text-gray-600 fa-calendar-week"></i>
-                                <p>{course.duration}</p>
+                                <p>{course.total_duration}</p>
                             </div>
                             <div className='flex gap-x-3 items-center'>
                                 <i className='fa-solid text-gray-600 fa-calendar-days'></i>
                                 <p>{getClassDays(course)}</p>
+                            </div>
+                            <div className='flex gap-x-2 items-center mt-2'>
+                                <i className='fa-solid text-gray-600  text-[14.5px] fa-clock'></i>
+                                <p className='text-gray-500 text-[14.5px] font-poppins ms-[1px]'>Each class is of {course.class_duration}.</p>
                             </div>
                         </div>
                         <div className="bg-[rgb(249,247,241)] border border-gray-300 rounded-md mt-10 font-poppins">
