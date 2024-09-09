@@ -39,6 +39,12 @@ const CourseDetails = () => {
             : 'No categories available';
     };
 
+    const getClassDays = (course) => {
+        return course && course.class_days && course.class_days.length > 0
+            ? course.class_days.map(category => category).join(', ')
+            : 'No classdays available';
+    };
+
     if (notFound) {
         return <NotFoundPage />;
     }
@@ -134,11 +140,15 @@ const CourseDetails = () => {
                             </div>
                             <div className='flex gap-x-3 items-center'>
                                 <i className='fa-solid text-gray-600 fa-graduation-cap'></i>
-                                <p>{course.enrolled} Total Enrolled</p>
+                                <p>{course.tutor}</p>
                             </div>
                             <div className='flex gap-x-3 items-center'>
-                                <i className='fa-regular text-gray-600 fa-calendar-days'></i>
-                                <p>{course.duration} Duration</p>
+                                <i class="fa-solid text-gray-600 fa-calendar-week"></i>
+                                <p>{course.duration}</p>
+                            </div>
+                            <div className='flex gap-x-3 items-center'>
+                                <i className='fa-solid text-gray-600 fa-calendar-days'></i>
+                                <p>{getClassDays(course)}</p>
                             </div>
                         </div>
                         <div className="bg-[rgb(249,247,241)] border border-gray-300 rounded-md mt-10 font-poppins">
