@@ -65,7 +65,7 @@ const Checkout = () => {
                             </div>
                             <div className='mb-4'>
                                 <h3 className='text-[19px] tracking-tight font-semibold text-gray-700'>Course Duration:</h3>
-                                <p className='text-[16.5px] text-gray-600 font-poppins'>{course.duration}</p>
+                                <p className='text-[16.5px] text-gray-600 font-poppins'>{course.total_duration}</p>
                             </div>
                             <div>
                                 <span className='text-[21px] tracking-tight font-semibold text-gray-800'>Fare:</span>
