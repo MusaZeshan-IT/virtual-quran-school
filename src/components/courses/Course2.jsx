@@ -40,7 +40,7 @@ const Course = ({ course }) => {
                     <button className='bg-emerald-600 text-white h-11 grid place-items-center text-sm font-semibold px-5 rounded-[7px] mt-6'>Study Now</button>
                 </Link>
                 <div className='bg-[rgb(226,236,232)] px-5 py-[9px] rounded-[7px] mt-6'>
-                    <span className='text-[16.5px] font-inter font-semibold border-b-[1px] border-gray-500'>{course.fee}<span className='ms-[2px]'>$</span></span>
+                    <span className='text-[17px] font-inter font-semibold border-b-[1px] border-gray-500'><span className='me-[2px] text-[16.5px]'>$</span>{course.fee}</span>
                 </div>
             </div>
         </div>

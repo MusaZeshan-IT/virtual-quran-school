@@ -69,7 +69,7 @@ const Checkout = () => {
                             </div>
                             <div>
                                 <span className='text-[21px] tracking-tight font-semibold text-gray-800'>Fare:</span>
-                                <span className='text-[19px] text-gray-700 font-poppins'> {course.fee}$</span>
+                                <span className='text-[19px] text-gray-700 font-poppins'> ${course.fee}</span>
                             </div>
                         </div>
                     </div>
