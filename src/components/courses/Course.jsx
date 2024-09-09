@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Course = ({ course }) => {
 
     return (
-        <div className='rounded-lg px-6 py-4 w-full bg-gray-100 shadow-[0px_0px_3px_0.1px_rgb(0,0,0)] font-inter'>
+        <div className='rounded-lg px-4 py-5 w-full bg-gray-100 shadow-[0px_0px_3px_0.1px_rgb(0,0,0)] font-inter'>
             <h2 className='text-[26px] font-semibold leading-[30px]'>{course.name}</h2>
             <div className='border-y mt-4 py-1 border-gray-300 flex justify-between'>
                 <div className="flex flex-col">
