@@ -26,7 +26,7 @@ const Course = ({ course }) => {
                     <span className='font-semibold'>Instructor</span>
                 </div>
                 <div className="flex flex-col">
-                    <span className='text-emerald-600 text-[17px] font-bold'>{course.duration}</span>
+                    <span className='text-emerald-600 text-[17px] font-bold'>{course.total_duration}</span>
                     <span className='font-semibold'>Duration</span>
                 </div>
                 <div className="flex flex-col">

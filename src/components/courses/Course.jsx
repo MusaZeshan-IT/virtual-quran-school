@@ -8,7 +8,7 @@ const Course = ({ course }) => {
             <h2 className='text-[26px] font-semibold leading-[30px]'>{course.name}</h2>
             <div className='border-y mt-4 py-1 border-gray-300 flex justify-between'>
                 <div className="flex flex-col">
-                    <span className='text-amber-600 text-[17px] font-bold'>{course.duration}</span>
+                    <span className='text-amber-600 text-[17px] font-bold'>{course.total_duration}</span>
                     <span className='font-semibold'>Duration</span>
                 </div>
                 <div className="flex flex-col">
