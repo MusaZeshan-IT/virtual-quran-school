@@ -44,7 +44,8 @@ const Courses = () => {
         };
     }, []);
 
-    const filteredCourses = courses.filter(course => course.type === 'top');
+    const filteredCourses = courses.filter(course => !course.hidden);
+    console.log(filteredCourses);
 
     const handleNext = () => {
         if (index + coursesPerRow < filteredCourses.length) {
