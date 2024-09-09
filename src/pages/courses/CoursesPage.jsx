@@ -180,7 +180,7 @@ const CoursesPage = () => {
                 />
 
                 {/* Course Cards Section */}
-                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12 mt-10'>
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 mt-10'>
                     {visibleCourses.map((course) => (
                         <Course2 key={course.id} course={course} />
                     ))}

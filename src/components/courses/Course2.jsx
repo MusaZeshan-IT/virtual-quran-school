@@ -18,20 +18,20 @@ const Course = ({ course }) => {
     }
 
     return (
-        <div className='rounded-lg px-6 py-6 w-full bg-white shadow-[0px_0px_3px_0.1px_rgb(0,0,0)] font-inter'>
+        <div className='rounded-lg px-5 py-6 w-full bg-white shadow-[0px_0px_3px_0.1px_rgb(0,0,0)] font-inter'>
             <h2 className='text-[26px] font-semibold leading-[30px]'>{course.name}</h2>
             <div className='border-y mt-4 py-1 border-gray-300 flex justify-between'>
+                <div className="flex flex-col">
+                    <span className='text-emerald-600 text-[17px] font-bold'>{course.tutor}</span>
+                    <span className='font-semibold'>Instructor</span>
+                </div>
                 <div className="flex flex-col">
                     <span className='text-emerald-600 text-[17px] font-bold'>{course.duration}</span>
                     <span className='font-semibold'>Duration</span>
                 </div>
                 <div className="flex flex-col">
-                    <span className='text-emerald-600 text-[17px] font-bold'>{convertTo12HourFormat(course.class_time)}</span>
-                    <span className='font-semibold'>Class Time</span>
-                </div>
-                <div className="flex flex-col">
-                    <span className='text-emerald-600 text-[17px] font-bold'>{course.enrolled}</span>
-                    <span className='font-semibold'>Enroll</span>
+                    <span className='text-emerald-600 text-[17px] font-bold'>{course.level}</span>
+                    <span className='font-semibold'>Level</span>
                 </div>
             </div>
             <p className='text-[rgb(133,128,128)] mt-6'>{course.brief_description}</p>
