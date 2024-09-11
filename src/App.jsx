@@ -13,6 +13,7 @@ import ContactPage from './pages/ContactPage';
 import BlogPage from './pages/blog/BlogPage';
 import BlogDetailPage from './pages/blog/BlogDetailPage';
 import NotFoundPage from './pages/NotFoundPage'
+import PaymentSuccessPage from './pages/PaymentSuccessPage';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,6 +42,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment-success" element={<PaymentSuccessPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         </Routes>

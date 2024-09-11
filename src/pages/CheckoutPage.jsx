@@ -2,7 +2,6 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 const Checkout = () => {
-
     const location = useLocation();
     const course = location?.state?.course;
 
@@ -10,7 +9,6 @@ const Checkout = () => {
     if (!course) {
         return <div>Course information is missing.</div>;
     }
-
 
     return (
         <div className='py-28 bg-gray-100'>
@@ -20,29 +18,21 @@ const Checkout = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:gap-20 md-custom:gap-14 md:gap-10 gap-12'>
                     <div className='w-full md:max-w-[570px] mx-auto bg-white shadow-lg rounded-lg overflow-hidden'>
                         <div className='bg-gradient-to-r from-green-400 to-blue-500 p-6'>
-                            <h2 className='text-2xl font-semibold text-white'>Pay in Meezan Bank</h2>
+                            <h2 className='text-2xl font-semibold text-white'>Pay via PayPal</h2>
                         </div>
                         <div className='p-6'>
-                            <div className='mb-3'>
-                                <h3 className='text-lg font-semibold text-gray-900'>Account Name:</h3>
-                                <p className='text-gray-700 text-base font-poppins'>BILAL SABIR</p>
-                            </div>
-                            <div className='mb-3'>
-                                <h3 className='text-lg font-semibold text-gray-900'>Account Number:</h3>
-                                <p className='text-gray-700 text-base font-poppins'>02050110275322</p>
-                            </div>
-                            <div className='mb-3'>
-                                <h3 className='text-lg font-semibold text-gray-900'>IBAN:</h3>
-                                <p className='text-gray-700 text-base font-poppins'>PK74MEZN0002050110275322</p>
-                            </div>
-                            <div className='mb-6'>
-                                <h3 className='text-lg font-semibold text-gray-900'>Bank Branch:</h3>
-                                <p className='text-gray-700 text-base font-poppins'>Meezan Bank-DHA Branch Lahore</p>
+                            <div className='mb-5'>
+                                <h3 className='text-lg font-semibold text-gray-900'>PayPal Email:</h3>
+                                <p className='text-gray-700 text-base font-poppins'>jajjas371@gmail.com</p>
                             </div>
                             <div className='mb-2'>
-                                <p className='text-gray-700 text-[15px] font-poppins'><span className='text-[16.2px] font-semibold font-sans text-gray-900'>Note:</span> Please transfer the exact amount to the account number provided. Email a screenshot of your receipt and your full name to the email below.</p>
+                                <p className='text-gray-700 text-[15px] font-poppins'>
+                                    <span className='text-[16.2px] font-semibold font-sans text-gray-900'>Note:</span> Please transfer the exact amount to the PayPal email address provided. Email a screenshot of your receipt and your full name to the email below.
+                                </p>
                             </div>
-                            <p className='text-gray-700 text-[15px] font-poppins'><span className='text-[16.2px] font-semibold font-sans text-gray-900'>Email:</span> virtualquran.billing@gmail.com</p>
+                            <p className='text-gray-700 text-[15px] font-poppins'>
+                                <span className='text-[16.2px] font-semibold font-sans text-gray-900'>Email:</span> virtualquran.billing@gmail.com
+                            </p>
                         </div>
                     </div>
 
@@ -51,7 +41,7 @@ const Checkout = () => {
                             <h2 className='text-3xl font-semibold text-white'>Course Details</h2>
                         </div>
                         <div className='p-6'>
-                            <div className='mb-3 mt-1'>
+                            <div className='mb-3'>
                                 <h3 className='text-[19px] tracking-tight font-semibold text-gray-700'>Name:</h3>
                                 <p className='text-[16.5px] text-gray-600 font-poppins'>{course.name}</p>
                             </div>
