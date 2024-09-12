@@ -147,9 +147,9 @@ const CoursesPage = () => {
     const visibleCourses = filteredCourses.slice((currentPage - 1) * 6, currentPage * 6);
 
     return (
-        <div className='bg-gradient-to-r from-[rgb(250,247,247)] via-gray-100 to-[rgb(250,247,247)] min-h-screen'>
-            <Hero pageName="Our Courses" pageSecondName="Courses" className="mb-12" />
-            <div className='my-24 font-inter'>
+        <div className='bg-gradient-to-r from-[rgb(250,247,247)] via-gray-100 to-[rgb(250,247,247)]'>
+            <Hero pageName="Our Courses" pageSecondName="Courses" />
+            <div className='font-inter py-28'>
                 {/* Filter Button for Small Screens */}
                 {/* <div onClick={toggleSidebar} className='flex md:hidden items-center justify-center gap-x-6 px-8 bg-white shadow-lg rounded-md mx-6 relative z-20'>
                     <div className='py-4 flex gap-x-3 items-center cursor-pointer hover:text-[rgb(8,81,63)]'>
@@ -183,7 +183,7 @@ const CoursesPage = () => {
                 /> */}
 
                 {/* Course Cards Section */}
-                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 mt-10'>
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6'>
                     {visibleCourses.map((course) => (
                         <Course2 key={course.id} course={course} />
                     ))}
