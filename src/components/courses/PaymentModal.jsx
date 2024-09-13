@@ -1,13 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import api from '../../apis/api';
 
 const PaymentModal = ({ isOpen, onClose, course }) => {
 
     if (!isOpen) return null;
 
-    const handleJazzCash = () => {
-        // Redirect to JazzCash payment initiation URL
-        window.location.href = '/jazzcash/initiate-payment';
+    const handleJazzCash = async () => {
+        try {
+            // Request payment initiation from backend
+            const response = await api.post('/payments/jazzcash/initiate/', {
+                course_id: course.id,
+                amount: course.fee,
+                currency: 'PKR', // or relevant currency
+            });
+
+            // Redirect to the JazzCash payment page
+            if (response.data.payment_url) {
+                window.location.href = response.data.payment_url;
+            } else {
+                console.error('Payment URL not received');
+            }
+        } catch (error) {
+            console.error('Error initiating JazzCash payment:', error);
+        }
     };
 
     return (

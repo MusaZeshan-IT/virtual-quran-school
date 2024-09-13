@@ -66,8 +66,6 @@ const CourseDetails = () => {
         setIsModalOpen(false); // Hide the modal
     };
 
-    console.log(isModalOpen);
-
 
     return (
         <div>
@@ -137,7 +135,7 @@ const CourseDetails = () => {
                                 <p>{course.tutor}</p>
                             </div>
                             <div className='flex gap-x-3 items-center'>
-                                <i class="fa-solid text-gray-600 fa-calendar-week"></i>
+                                <i className="fa-solid text-gray-600 fa-calendar-week"></i>
                                 <p>{course.total_duration}</p>
                             </div>
                             <div className='flex gap-x-3 items-center'>
