@@ -7,8 +7,9 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
-    const [error, setError] = useState(''); // New state for error messages
-    const [isSubmitting, setIsSubmitting] = useState(false); // State for loading
+    const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
 
     const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ const Register = () => {
                 password2
             });
 
-            if (response.status === 200 || response.status === 201) { // Check for successful response
+            if (response.status === 200 || response.status === 201) {
                 alert('User registered successfully');
                 setUsername('');
                 setEmail('');
@@ -39,7 +40,11 @@ const Register = () => {
         } finally {
             setIsSubmitting(false);
         }
-    }
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword((prevState) => !prevState);
+    };
 
     return (
         <div className='my-24'>
@@ -51,7 +56,7 @@ const Register = () => {
                             <i className='fa-solid fa-circle-exclamation mt-[3px]'></i>
                             <p className="text-red-500 font-poppins text-sm">{error}</p>
                         </div>
-                    )} {/* Display error message */}
+                    )}
                     <label className='font-poppins text-gray-600 ms-[1px]' htmlFor="username">User Name</label>
                     <input
                         id='username'
@@ -75,27 +80,45 @@ const Register = () => {
                         required
                     />
                     <label className='font-poppins text-gray-600 ms-[1px]' htmlFor="password">Password</label>
-                    <input
-                        id='password'
-                        className='border font-poppins mt-1 mb-3 border-gray-300 rounded-md py-3 px-5 w-full'
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                        required
-                    />
+                    <div className='relative mt-1 mb-3'>
+                        <input
+                            id='password'
+                            className='border font-poppins border-gray-300 rounded-md py-3 px-5 w-full pr-10'
+                            type={showPassword ? "text" : "password"} // Toggle password visibility
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Password"
+                            required
+                        />
+                        <button
+                            type="button"
+                            className='absolute right-3 top-3 text-gray-500 focus:outline-none'
+                            onClick={togglePasswordVisibility}
+                        >
+                            <i className={`fa-solid ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+                        </button>
+                    </div>
                     <label className='font-poppins text-gray-600 ms-[1px]' htmlFor="confirmPassword">Confirm Password</label>
-                    <input
-                        id='confirmPassword'
-                        className='border font-poppins mt-1 border-gray-300 rounded-md py-3 px-5 w-full'
-                        type="password"
-                        name="confirmPassword"
-                        value={password2}
-                        onChange={(e) => setPassword2(e.target.value)}
-                        placeholder="Confirm Password"
-                        required
-                    />
+                    <div className='relative mt-1'>
+                        <input
+                            id='confirmPassword'
+                            className='border font-poppins border-gray-300 rounded-md py-3 px-5 w-full pr-10'
+                            type={showPassword ? "text" : "password"} // Toggle confirm password visibility
+                            name="confirmPassword"
+                            value={password2}
+                            onChange={(e) => setPassword2(e.target.value)}
+                            placeholder="Confirm Password"
+                            required
+                        />
+                        <button
+                            type="button"
+                            className='absolute right-3 top-3 text-gray-500 focus:outline-none'
+                            onClick={togglePasswordVisibility}
+                        >
+                            <i className={`fa-solid ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+                        </button>
+                    </div>
                     <button disabled={isSubmitting} className={`bg-[rgb(29,142,90)] ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''} rounded-md font-poppins text-white w-full py-3 mt-10`} type="submit">
                         {isSubmitting ? 'Registering...' : 'Register'}
                     </button>

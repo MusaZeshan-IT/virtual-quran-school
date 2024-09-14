@@ -5,8 +5,9 @@ import { Link, useNavigate } from 'react-router-dom';
 const Login = ({ setIsAuthenticated }) => {
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(''); // State for error messages
-    const [isSubmitting, setIsSubmitting] = useState(false); // State for loading
+    const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showPassword, setShowPassword] = useState(false); // State for showing/hiding password
 
     const navigate = useNavigate();
 
@@ -14,18 +15,18 @@ const Login = ({ setIsAuthenticated }) => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            const apiUrl = '/accounts/login/'; // Adjust the URL as needed
+            const apiUrl = '/accounts/login/';
             const response = await loginSignupApi.post(apiUrl, {
-                username: usernameOrEmail, // Assuming the user is entering either a username or email
+                username: usernameOrEmail,
                 password,
             });
 
-            if (response.status === 200) { // Check for successful response
+            if (response.status === 200) {
                 localStorage.setItem('access_token', response.data.access);
                 localStorage.setItem('refresh_token', response.data.refresh);
                 localStorage.setItem('username', response.data.username);
                 alert('Login successful');
-                setUsernameOrEmail(''); // Clear input fields
+                setUsernameOrEmail('');
                 setPassword('');
                 setError('');
                 setIsAuthenticated(true);
@@ -39,6 +40,10 @@ const Login = ({ setIsAuthenticated }) => {
         }
     };
 
+    const togglePasswordVisibility = () => {
+        setShowPassword((prevState) => !prevState);
+    };
+
     return (
         <div className='my-24'>
             <div className='bg-[rgb(246,246,235)] px-10 py-12 2xs-custom:w-[400px] w-full mx-auto rounded-lg'>
@@ -49,7 +54,7 @@ const Login = ({ setIsAuthenticated }) => {
                             <i className='fa-solid fa-circle-exclamation mt-[3px]'></i>
                             <p className="text-red-500 font-poppins text-sm">{error}</p>
                         </div>
-                    )} {/* Display error message */}
+                    )}
                     <input
                         className='border font-poppins border-gray-300 rounded-md py-3 px-5 w-full'
                         type="text"
@@ -59,15 +64,26 @@ const Login = ({ setIsAuthenticated }) => {
                         placeholder="Enter username or email"
                         required
                     />
-                    <input
-                        className='border font-poppins mt-3 border-gray-300 rounded-md py-3 px-5 w-full'
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Enter password"
-                        required
-                    />
+
+                    <div className='relative mt-3'>
+                        <input
+                            className='border font-poppins border-gray-300 rounded-md py-3 px-5 w-full pr-10'
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter password"
+                            required
+                        />
+                        <button
+                            type="button"
+                            className='absolute right-3 top-3 text-gray-500 focus:outline-none'
+                            onClick={togglePasswordVisibility}
+                        >
+                            <i className={`fa-solid ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+                        </button>
+                    </div>
+
                     <p className='font-poppins mt-4 ms-1 text-[13.8px]'>Forgot your password?</p>
                     <button disabled={isSubmitting} className={`bg-[rgb(29,142,90)] ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''} rounded-md font-poppins text-white w-full py-3 mt-10`} type="submit">
                         {isSubmitting ? 'Logging in...' : 'Log In'}
