@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import api from '../../apis/api';
 import NotFoundPage from '../NotFoundPage';
 import Spinner from '../../components/Spinner';
 import Hero from '../../components/shared/Hero';
 import CourseOtherInfoBox from '../../components/courses/CourseOtherInfoBox';
-import PaymentModal from '../../components/courses/PaymentModal';
 
 const CourseDetails = () => {
     const { courseUrlName } = useParams();
     const [course, setCourse] = useState(null);
     const [notFound, setNotFound] = useState(false);
     const [activeTab, setActiveTab] = useState('info');
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         let timeoutId;
@@ -57,15 +53,6 @@ const CourseDetails = () => {
             <Spinner message={"Loading course details..."} />
         )
     }
-
-    const handlePurchase = () => {
-        setIsModalOpen(true); // Show the modal
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false); // Hide the modal
-    };
-
 
     return (
         <div>
@@ -118,12 +105,11 @@ const CourseDetails = () => {
                     <div className='lg:w-[30%]'>
                         <div className="bg-[rgb(249,247,241)] border-t border-x p-9 rounded-t-md border-b border-gray-300">
                             <p className='text-2xl font-bold font-poppins'>${course.fee}</p>
-                            <button
-                                className='bg-emerald-600 hover:bg-[rgb(255,208,80)] hover:text-black mt-7 text-white font-semibold w-full text-[17px] py-3 rounded-md'
-                                onClick={handlePurchase}
-                            >
-                                Buy this course
-                            </button>
+                            <Link state={{ course: course }} to={'/checkout'}>
+                                <button className='bg-emerald-600 hover:bg-[rgb(255,208,80)] hover:text-black mt-7 text-white font-semibold w-full text-[17px] py-3 rounded-md'>
+                                    Buy this course
+                                </button>
+                            </Link>
                         </div>
                         <div className="bg-white flex flex-col gap-y-3 border-b border-x p-6 rounded-b-md border-gray-300 font-poppins">
                             <div className='flex gap-x-3 items-center'>
@@ -151,7 +137,6 @@ const CourseDetails = () => {
                     </div>
                 </div>
             </div>
-            <PaymentModal course={course} isOpen={isModalOpen} onClose={handleCloseModal} />
         </div>
     );
 };
