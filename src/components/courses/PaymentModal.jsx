@@ -7,22 +7,43 @@ const PaymentModal = ({ isOpen, onClose, course }) => {
     if (!isOpen) return null;
 
     const handleJazzCash = async () => {
+        const data = {
+            course_name: course.name,
+            amount: course.fee,
+            currency: 'USD',
+        };
+
         try {
-            // Request payment initiation from backend
-            const response = await api.post('/payments/jazzcash/initiate/', {
-                course_id: course.id,
-                amount: course.fee,
-                currency: 'PKR', // or relevant currency
+            // Include the JWT token in the headers
+            const token = localStorage.getItem('token');  // Assuming token is stored in localStorage
+            const response = await api.post('/payments/jazzcash/initiate/', data, {
+                headers: {
+                    Authorization: `Bearer ${token}`  // Send JWT token
+                },
+                timeout: 20000,
             });
 
+            // Log the API response to check its structure
+            console.log('API Response:', response);
+
             // Redirect to the JazzCash payment page
-            if (response.data.payment_url) {
-                window.location.href = response.data.payment_url;
+            if (response && response.data && response.data.redirectUrl) {
+                window.location.href = response.data.redirectUrl;
             } else {
                 console.error('Payment URL not received');
+                alert('Payment URL not received. Please try again later.');
             }
         } catch (error) {
-            console.error('Error initiating JazzCash payment:', error);
+            if (error.response) {
+                console.error('Error initiating JazzCash payment:', error.response.data);
+                alert('Error: ' + (error.response.data.error || 'Payment initiation failed.'));
+            } else if (error.request) {
+                console.error('No response from JazzCash:', error.request);
+                alert('No response from JazzCash. Please check your network connection or try again later.');
+            } else {
+                console.error('Error in setting up request:', error.message);
+                alert('Unexpected error: ' + error.message);
+            }
         }
     };
 

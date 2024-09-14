@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TopBanner from '../../assets/top-banner.png';
 import AllahName from '../../assets/allah-name.png';
 import logoutApi from '../../apis/logoutApi';
@@ -8,6 +8,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [isDropdownOpen, setDropdownOpen] = useState(false); // State for dropdown visibility
 
+    const navigate = useNavigate();
 
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
