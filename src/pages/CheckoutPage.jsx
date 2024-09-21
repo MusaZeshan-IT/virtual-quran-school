@@ -3,11 +3,11 @@ import { useLocation } from 'react-router-dom';
 
 const Checkout = () => {
     const location = useLocation();
-    const course = location?.state?.course;
+    const { course, plan } = location.state || {};
 
-    // Fallback if `course` is undefined
-    if (!course) {
-        return <div>Course information is missing.</div>;
+    // Fallback if course or plan is undefined
+    if (!course || !plan) {
+        return <div>Course or Plan information is missing.</div>;
     }
 
     return (
@@ -49,13 +49,9 @@ const Checkout = () => {
                                 <h3 className='text-[19px] tracking-tight font-semibold text-gray-700'>Level:</h3>
                                 <p className='text-[16.5px] text-gray-600 font-poppins'>{course.level}</p>
                             </div>
-                            <div className='mb-3'>
-                                <h3 className='text-[19px] tracking-tight font-semibold text-gray-700'>Instructor:</h3>
-                                <p className='text-[16.5px] text-gray-600 font-poppins'>{course.tutor}</p>
-                            </div>
                             <div className='mb-4'>
-                                <h3 className='text-[19px] tracking-tight font-semibold text-gray-700'>Course Duration:</h3>
-                                <p className='text-[16.5px] text-gray-600 font-poppins'>{course.total_duration}</p>
+                                <h3 className='text-[19px] tracking-tight font-semibold text-gray-700'>Course Plan:</h3>
+                                <p className='text-[16.5px] text-gray-600 font-poppins'>{plan.name}</p>
                             </div>
                             <div>
                                 <span className='text-[21px] tracking-tight font-semibold text-gray-800'>Fare:</span>

@@ -11,6 +11,7 @@ const CourseDetails = () => {
     const [course, setCourse] = useState(null);
     const [notFound, setNotFound] = useState(false);
     const [activeTab, setActiveTab] = useState('info');
+    const [selectedPlan, setSelectedPlan] = useState(null); // Added state for selected plan
 
     useEffect(() => {
         let timeoutId;
@@ -18,6 +19,10 @@ const CourseDetails = () => {
         api.get(`/courses/${courseUrlName}/`)
             .then(response => {
                 setCourse(response.data);
+                // Set the first plan as the selected plan initially
+                if (response.data.plans.length > 0) {
+                    setSelectedPlan(response.data.plans[0]);
+                }
             })
             .catch(error => {
                 console.error('Error fetching course details:', error);
@@ -31,17 +36,16 @@ const CourseDetails = () => {
         };
     }, [courseUrlName]);
 
-
     const getCategories = (course) => {
         return course && course.categories && course.categories.length > 0
             ? course.categories.map(category => category).join(', ')
             : 'No categories available';
     };
 
-    const getClassDays = (course) => {
-        return course && course.class_days && course.class_days.length > 0
-            ? course.class_days.map(category => category).join(', ')
-            : 'No classdays available';
+    const getClassDays = (plan) => {
+        return plan && plan.class_days && plan.class_days.length > 0
+            ? plan.class_days.map(day => day).join(', ')
+            : 'No class days available';
     };
 
     if (notFound) {
@@ -51,7 +55,7 @@ const CourseDetails = () => {
     if (!course) {
         return (
             <Spinner message={"Loading course details..."} />
-        )
+        );
     }
 
     return (
@@ -105,7 +109,7 @@ const CourseDetails = () => {
                     <div className='lg:w-[30%]'>
                         <div className="bg-[rgb(249,247,241)] border-t border-x p-9 rounded-t-md border-b border-gray-300">
                             <p className='text-2xl font-bold font-poppins'>${course.fee}</p>
-                            <Link state={{ course: course }} to={'/checkout'}>
+                            <Link state={{ course: course, plan: selectedPlan }} to={'/checkout'}>
                                 <button className='bg-emerald-600 hover:bg-[rgb(255,208,80)] hover:text-black mt-7 text-white font-semibold w-full text-[17px] py-3 rounded-md'>
                                     Buy this course
                                 </button>
@@ -117,16 +121,8 @@ const CourseDetails = () => {
                                 <p>{course.level}</p>
                             </div>
                             <div className='flex gap-x-3 items-center'>
-                                <i className='fa-solid text-gray-600 fa-user-graduate'></i>
-                                <p>{course.tutor}</p>
-                            </div>
-                            <div className='flex gap-x-3 items-center'>
-                                <i className="fa-solid text-gray-600 fa-calendar-week"></i>
-                                <p>{course.total_duration}</p>
-                            </div>
-                            <div className='flex gap-x-3 items-center'>
                                 <i className='fa-solid text-gray-600 fa-calendar-days'></i>
-                                <p>{getClassDays(course)}</p>
+                                <p>{getClassDays(selectedPlan)}</p> {/* Display class days of the selected plan */}
                             </div>
                             <div className='flex gap-x-2 items-center mt-2'>
                                 <i className='fa-solid text-gray-600  text-[14.5px] fa-clock'></i>
