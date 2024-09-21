@@ -108,7 +108,7 @@ const CourseDetails = () => {
                     </div>
                     <div className='lg:w-[30%]'>
                         <div className="bg-[rgb(249,247,241)] border-t border-x p-9 rounded-t-md border-b border-gray-300">
-                            <p className='text-2xl font-bold font-poppins'>${course.fee}</p>
+                            <p className='text-2xl font-bold font-poppins'>${selectedPlan.fee}</p>
                             <Link state={{ course: course, plan: selectedPlan }} to={'/checkout'}>
                                 <button className='bg-emerald-600 hover:bg-[rgb(255,208,80)] hover:text-black mt-7 text-white font-semibold w-full text-[17px] py-3 rounded-md'>
                                     Buy this course

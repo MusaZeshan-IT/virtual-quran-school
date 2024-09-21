@@ -61,7 +61,7 @@ const ConfirmationModal = ({ isOpen, onClose, course }) => {
                 <h2 className="text-2xl font-poppins font-bold tracking-wide mb-4 border-b border-gray-300 pb-2">Confirm Purchase</h2>
                 <div className="mb-4 flex flex-col gap-x-4">
                     <h3 className="text-[19px] font-semibold text-gray-700 mb-2"><span className='text-black text-xl'>Name:</span> {course.name}</h3>
-                    <p className="text-[19px] font-semibold text-gray-700"><span className='text-black text-xl'>Sub Total:</span> {course.fee}$</p>
+                    <p className="text-[19px] font-semibold text-gray-700"><span className='text-black text-xl'>Sub Total:</span> {plan.fee}$</p>
                 </div>
                 <p className="text-gray-700 mb-6 text-sm font-poppins">Please enter your details to proceed with the purchase:</p>
                 <div className="mb-4">

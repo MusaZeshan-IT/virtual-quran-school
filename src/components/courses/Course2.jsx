@@ -19,7 +19,7 @@ const Course2 = ({ course, plan }) => {
                     <span className='font-semibold'>Level</span>
                 </div>
                 <div className="flex flex-col">
-                    <span className='text-emerald-600 text-[17px] font-bold'><span className='me-[1px]'>$</span>{course.fee}</span>
+                    <span className='text-emerald-600 text-[17px] font-bold'><span className='me-[1px]'>$</span>{plan.fee}</span>
                     <span className='font-semibold'>Price</span>
                 </div>
             </div>
