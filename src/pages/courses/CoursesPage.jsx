@@ -4,8 +4,8 @@ import api from '../../apis/api';
 import Hero from '../../components/shared/Hero';
 import Pagination from '../../components/Pagination';
 import Spinner from '../../components/Spinner';
-import FilterSidebar from '../../components/courses/FilterSidebar';
-import FilterBar from '../../components/courses/FilterBar';
+// import FilterSidebar from '../../components/courses/FilterSidebar';
+// import FilterBar from '../../components/courses/FilterBar';
 
 // Define filter options
 const filterOptions = {
@@ -16,6 +16,7 @@ const filterOptions = {
 
 const CoursesPage = () => {
     const [courses, setCourses] = useState([]);
+    const [coursePlans, setCoursePlans] = useState([]);
     const [filteredCourses, setFilteredCourses] = useState([]);
     const [activeFilter, setActiveFilter] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
@@ -27,9 +28,10 @@ const CoursesPage = () => {
     });
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    // Fetch courses when the component mounts
+    // Fetch courses and course plans when the component mounts
     useEffect(() => {
         fetchCourses();
+        fetchCoursePlans();  // Fetch course plans
     }, []);
 
     // Apply filters whenever selected options or courses change
@@ -51,6 +53,17 @@ const CoursesPage = () => {
             })
             .catch(error => {
                 console.error('Error fetching courses:', error);
+            });
+    };
+
+    // Fetch course plans from the API
+    const fetchCoursePlans = () => {
+        api.get('/course-plans/')
+            .then(response => {
+                setCoursePlans(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching course plans:', error);
             });
     };
 
@@ -86,37 +99,6 @@ const CoursesPage = () => {
         setTotalPages(Math.ceil(filteredCourses.length / 6));
     };
 
-    // Handle filter selection
-    const handleFilterClick = (filterType) => {
-        setActiveFilter(activeFilter === filterType ? '' : filterType);
-    };
-
-    // Handle option selection for filters
-    const handleOptionSelect = (filterType, option) => {
-        setSelectedOptions(prev => ({
-            ...prev,
-            [filterType]: prev[filterType] === option ? '' : option,
-        }));
-    };
-
-    // Clear all filters
-    const handleClearFilters = () => {
-        setSelectedOptions({
-            sortBy: '',
-            level: '',
-            price: '',
-        });
-        setActiveFilter('');
-    };
-
-    // Check if an option is selected
-    const isOptionSelected = (filterType, option) => selectedOptions[filterType] === option;
-
-    // Toggle sidebar visibility
-    const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
-
     // Handle pagination page change
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -150,42 +132,26 @@ const CoursesPage = () => {
         <div className='bg-gradient-to-r from-[rgb(250,247,247)] via-gray-100 to-[rgb(250,247,247)]'>
             <Hero pageName="Our Courses" pageSecondName="Courses" />
             <div className='font-inter py-28'>
-                {/* Filter Button for Small Screens */}
-                {/* <div onClick={toggleSidebar} className='flex md:hidden items-center justify-center gap-x-6 px-8 bg-white shadow-lg rounded-md mx-6 relative z-20'>
-                    <div className='py-4 flex gap-x-3 items-center cursor-pointer hover:text-[rgb(8,81,63)]'>
-                        <i className='fa-solid fa-filter text-lg'></i>
-                        <span className='text-xl font-semibold'>Filter</span>
-                    </div>
-                </div> */}
-
-                {/* Filter Sidebar */}
-                {/* {isSidebarOpen && (
-                    <FilterSidebar
-                        toggleSidebar={toggleSidebar}
-                        filterOptions={filterOptions}
-                        activeFilter={activeFilter}
-                        isOptionSelected={isOptionSelected}
-                        handleFilterClick={handleFilterClick}
-                        handleOptionSelect={handleOptionSelect}
-                        handleClearFilters={handleClearFilters}
-                    />
-                )} */}
-
-                {/* Filter Section for Medium and Larger Screens */}
-                {/* <FilterBar
-                    filterOptions={filterOptions}
-                    activeFilter={activeFilter}
-                    isOptionSelected={isOptionSelected}
-                    handleFilterClick={handleFilterClick}
-                    handleOptionSelect={handleOptionSelect}
-                    selectedOptions={selectedOptions}
-                    handleClearFilters={handleClearFilters}
-                /> */}
-
                 {/* Course Cards Section */}
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6'>
                     {visibleCourses.map((course) => (
-                        <Course2 key={course.id} course={course} />
+                        <div key={course.id}>
+                            <Course2 course={course} />
+
+                            {/* Display Course Plans */}
+                            <div className='mt-4'>
+                                <h3 className="text-lg font-semibold">Available Plans:</h3>
+                                <ul className="list-disc ml-6">
+                                    {coursePlans
+                                        .filter(plan => plan.course === course.id)  // Only show plans for the current course
+                                        .map(plan => (
+                                            <li key={plan.id}>
+                                                {plan.name}: {plan.class_days.join(", ")} ({plan.classes_per_week} classes per week)
+                                            </li>
+                                        ))}
+                                </ul>
+                            </div>
+                        </div>
                     ))}
                 </div>
 
