@@ -9,7 +9,7 @@ const Course2 = ({ course, plan }) => {
                 <h2 className='text-[26px] font-semibold leading-[30px]'>{course.name}</h2>
 
             </div>
-            <div className='border-y mt-4 py-1 border-gray-300 flex items-center gap-x-20'>
+            <div className='border-y mt-4 py-1 border-gray-300 flex items-center justify-between'>
                 <div className="flex flex-col">
                     <span className='text-emerald-600 text-[17px] font-bold'>{plan.number_of_classes_per_week} per week</span>
                     <span className='font-semibold'>Sessions</span>

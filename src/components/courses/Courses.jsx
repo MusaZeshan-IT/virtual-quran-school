@@ -3,14 +3,18 @@ import Course from './Course';
 import api from '../../apis/api';
 
 const Courses = () => {
-    const [courses, setCourses] = useState([]);
+    const [coursesWithPlans, setCoursesWithPlans] = useState([]);
     const [index, setIndex] = useState(0);
     const [coursesPerRow, setCoursesPerRow] = useState(3); // Default to 3 courses per row
 
     const fetchCourses = () => {
         api.get('/courses/')
             .then(response => {
-                setCourses(response.data);
+                // Flatten the courses and plans into one array
+                const allCoursesWithPlans = response.data.flatMap(course =>
+                    course.plans.map(plan => ({ course, plan }))
+                );
+                setCoursesWithPlans(allCoursesWithPlans);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -21,12 +25,11 @@ const Courses = () => {
         fetchCourses();
     }, []);
 
-    // Function to update the number of courses per row based on screen size
     const updateCoursesPerRow = () => {
         const screenWidth = window.innerWidth;
-        if (screenWidth < 640) { // sm breakpoint in Tailwind (below 640px)
+        if (screenWidth < 640) {
             setCoursesPerRow(1);
-        } else if (screenWidth < 1024) { // lg breakpoint in Tailwind (below 1024px)
+        } else if (screenWidth < 1024) {
             setCoursesPerRow(2);
         } else {
             setCoursesPerRow(3);
@@ -34,17 +37,14 @@ const Courses = () => {
     };
 
     useEffect(() => {
-        // Update courses per row when the component mounts
         updateCoursesPerRow();
-        // Add an event listener to update courses per row on window resize
         window.addEventListener('resize', updateCoursesPerRow);
-        // Clean up event listener on component unmount
         return () => {
             window.removeEventListener('resize', updateCoursesPerRow);
         };
     }, []);
 
-    const filteredCourses = courses.filter(course => !course.hidden);
+    const filteredCourses = coursesWithPlans.filter(({ course }) => !course.hidden);
 
     const handleNext = () => {
         if (index + coursesPerRow < filteredCourses.length) {
@@ -58,8 +58,9 @@ const Courses = () => {
         }
     };
 
-    // Filtering courses before slicing them
     const coursesToDisplay = filteredCourses.slice(index, index + coursesPerRow);
+
+    console.log(coursesToDisplay);
 
     return (
         <div className='2xl:px-16 xl-custom:px-14 xl:px-12 lg-custom:px-10 lg:px-8 md-custom:px-6 px-6'>
@@ -73,12 +74,10 @@ const Courses = () => {
                     </h3>
                 </div>
                 <div className='flex gap-x-4 md:mt-0 mt-6'>
-                    {/* Previous Button */}
                     <i
                         onClick={handlePrevious}
                         className={`border-2 ${index === 0 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} border-yellow-600 grid place-items-center rounded-full h-14 w-14 fa-solid fa-chevron-left hover:bg-yellow-600 hover:text-white text-yellow-600`}
                     ></i>
-                    {/* Next Button */}
                     <i
                         onClick={handleNext}
                         className={`border-2 ${index + coursesPerRow >= filteredCourses.length ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} border-yellow-600 grid place-items-center rounded-full h-14 w-14 fa-solid fa-chevron-right hover:bg-yellow-600 hover:text-white text-yellow-600`}
@@ -86,13 +85,13 @@ const Courses = () => {
                 </div>
             </div>
             {/* Courses Container */}
-            <div className={`grid lg:grid-cols-${coursesPerRow} sm:grid-cols-${coursesPerRow === 3 ? 2 : coursesPerRow} grid-cols-1 gap-6 md:mt-10 mt-14 transition-transform duration-500 ease-in-out transform translate-x-${-index * (100 / coursesPerRow)}%`}>
-                {coursesToDisplay.map((course) => (
-                    <Course key={course.id} course={course} />
+            <div className={`grid lg:grid-cols-${coursesPerRow} sm:grid-cols-${coursesPerRow === 3 ? 2 : coursesPerRow} grid-cols-1 gap-6 md:mt-10 mt-14`}>
+                {coursesToDisplay.map(({ course, plan }) => (
+                    <Course key={`${course.id}-${plan.id}`} course={course} plan={plan} />
                 ))}
             </div>
         </div>
     );
-}
+};
 
 export default Courses;
