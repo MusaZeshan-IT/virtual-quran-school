@@ -15,6 +15,8 @@ const CourseDetails = () => {
     const location = useLocation()
     const { plan } = location.state || null;
 
+    console.log(plan);
+
     useEffect(() => {
         let timeoutId;
 
@@ -38,12 +40,6 @@ const CourseDetails = () => {
         return course && course.categories && course.categories.length > 0
             ? course.categories.map(category => category).join(', ')
             : 'No categories available';
-    };
-
-    const getClassDays = (plan) => {
-        return plan && plan.class_days && plan.class_days.length > 0
-            ? plan.class_days.map(day => day).join(', ')
-            : 'No class days available';
     };
 
     if (notFound) {
@@ -120,7 +116,7 @@ const CourseDetails = () => {
                             </div>
                             <div className='flex gap-x-3 items-center'>
                                 <i className='fa-solid text-gray-600 fa-calendar-days'></i>
-                                <p>{getClassDays(plan)}</p>
+                                <p>{plan.class_days}</p>
                             </div>
                             <div className='flex gap-x-3 items-center'>
                                 <i className='fa-solid text-gray-600 fa-graduation-cap'></i>
