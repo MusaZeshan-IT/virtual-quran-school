@@ -29,7 +29,7 @@ const Course = ({ course, plan, isCoursesPage = false }) => {
             <p className='text-[rgb(133,128,128)] mt-4'>{course.brief_description}</p>
             <div className="flex justify-between items-end mt-8">
                 <Link to={`/courses/${course.slug}/`} state={{ plan }}>
-                    <button className='bg-amber-600 text-white h-11 grid place-items-center text-sm font-semibold px-5 rounded-[5px]'>
+                    <button className={`${isCoursesPage ? 'bg-emerald-600' : 'bg-amber-600'} text-white h-11 grid place-items-center text-sm font-semibold px-5 rounded-[5px]`}>
                         Study Now
                     </button>
                 </Link>

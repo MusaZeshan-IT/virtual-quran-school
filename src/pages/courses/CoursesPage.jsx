@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Course2 from '../../components/courses/Course2';
 import api from '../../apis/api';
 import Hero from '../../components/shared/Hero';
 import Pagination from '../../components/Pagination';
 import Spinner from '../../components/Spinner';
 import FilterSidebar from '../../components/courses/FilterSidebar';
 import FilterBar from '../../components/courses/FilterBar';
+import Course from '../../components/courses/Course';
 
 const CoursesPage = () => {
     const [courses, setCourses] = useState([]);
@@ -106,7 +106,7 @@ const CoursesPage = () => {
             <div className='font-inter py-28'>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6'>
                     {visiblePlans.map((plan) => (
-                        <Course2 key={plan.id} course={plan.course} plan={plan} />
+                        <Course isCoursesPage={true} key={plan.id} course={plan.course} plan={plan} />
                     ))}
                 </div>
 
