@@ -11,16 +11,18 @@ const Course2 = ({ course, plan }) => {
             </div>
             <div className='border-y mt-4 py-1 border-gray-300 flex items-center justify-between'>
                 <div className="flex flex-col">
-                    <span className='text-emerald-600 text-[17px] font-bold'>{plan.number_of_classes_per_week} per week</span>
+                    <span className='text-emerald-600 text-[17px] font-bold'><span className='me-[1px]'>$</span>{plan.fee}</span>
+                    <span className='font-semibold'>Price</span>
+                </div>
+                <div className="flex flex-col">
+                    <span className='text-emerald-600 text-[17px] font-bold'>
+                        {plan.number_of_classes_per_week} days<span className='mx-[2px]'>/</span>week
+                    </span>
                     <span className='font-semibold'>Sessions</span>
                 </div>
                 <div className="flex flex-col">
                     <span className='text-emerald-600 text-[17px] font-bold'>{course.level}</span>
                     <span className='font-semibold'>Level</span>
-                </div>
-                <div className="flex flex-col">
-                    <span className='text-emerald-600 text-[17px] font-bold'><span className='me-[1px]'>$</span>{plan.fee}</span>
-                    <span className='font-semibold'>Price</span>
                 </div>
             </div>
             <p className='text-[rgb(133,128,128)] mt-6'>{course.brief_description}</p>
