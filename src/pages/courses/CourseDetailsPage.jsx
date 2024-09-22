@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import api from '../../apis/api';
 import NotFoundPage from '../NotFoundPage';
 import Spinner from '../../components/Spinner';
@@ -11,7 +11,9 @@ const CourseDetails = () => {
     const [course, setCourse] = useState(null);
     const [notFound, setNotFound] = useState(false);
     const [activeTab, setActiveTab] = useState('info');
-    const [selectedPlan, setSelectedPlan] = useState(null); // Added state for selected plan
+
+    const location = useLocation()
+    const { plan } = location.state || null;
 
     useEffect(() => {
         let timeoutId;
@@ -19,10 +21,6 @@ const CourseDetails = () => {
         api.get(`/courses/${courseUrlName}/`)
             .then(response => {
                 setCourse(response.data);
-                // Set the first plan as the selected plan initially
-                if (response.data.plans.length > 0) {
-                    setSelectedPlan(response.data.plans[0]);
-                }
             })
             .catch(error => {
                 console.error('Error fetching course details:', error);
@@ -108,8 +106,8 @@ const CourseDetails = () => {
                     </div>
                     <div className='lg:w-[30%]'>
                         <div className="bg-[rgb(249,247,241)] border-t border-x p-9 rounded-t-md border-b border-gray-300">
-                            <p className='text-2xl font-bold font-poppins'>${selectedPlan.fee}</p>
-                            <Link state={{ course: course, plan: selectedPlan }} to={'/checkout'}>
+                            <p className='text-2xl font-bold font-poppins'>${plan.fee}</p>
+                            <Link state={{ course: course, plan: plan }} to={'/checkout'}>
                                 <button className='bg-emerald-600 hover:bg-[rgb(255,208,80)] hover:text-black mt-7 text-white font-semibold w-full text-[17px] py-3 rounded-md'>
                                     Buy this course
                                 </button>
@@ -122,7 +120,11 @@ const CourseDetails = () => {
                             </div>
                             <div className='flex gap-x-3 items-center'>
                                 <i className='fa-solid text-gray-600 fa-calendar-days'></i>
-                                <p>{getClassDays(selectedPlan)}</p> {/* Display class days of the selected plan */}
+                                <p>{getClassDays(plan)}</p>
+                            </div>
+                            <div className='flex gap-x-3 items-center'>
+                                <i className='fa-solid text-gray-600 fa-graduation-cap'></i>
+                                <p>{plan.name}</p>
                             </div>
                             <div className='flex gap-x-2 items-center mt-2'>
                                 <i className='fa-solid text-gray-600  text-[14.5px] fa-clock'></i>
