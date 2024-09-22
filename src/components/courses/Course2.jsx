@@ -12,7 +12,7 @@ const Course2 = ({ course, plan }) => {
             <div className='border-y mt-4 py-1 border-gray-300 flex items-center justify-between'>
                 <div className="flex flex-col">
                     <span className='text-emerald-600 text-[17px] font-bold'><span className='me-[1px]'>$</span>{plan.fee}</span>
-                    <span className='font-semibold'>Price</span>
+                    <span className='font-semibold'>Monthly Fee</span>
                 </div>
                 <div className="flex flex-col">
                     <span className='text-emerald-600 text-[17px] font-bold'>

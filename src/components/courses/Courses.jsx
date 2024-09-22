@@ -60,10 +60,8 @@ const Courses = () => {
 
     const coursesToDisplay = filteredCourses.slice(index, index + coursesPerRow);
 
-    console.log(coursesToDisplay);
-
     return (
-        <div className='2xl:px-16 xl-custom:px-14 xl:px-12 lg-custom:px-10 lg:px-8 md-custom:px-6 px-6'>
+        <div className='2xl:px-12 xl-custom:px-10 xl:px-8 px-6'>
             <div className='flex md:flex-row flex-col md:items-end items-center justify-between'>
                 <div>
                     <h2 className='font-aladin md:text-start text-center tracking-[1.5px] text-gray-600 mt-3 text-xl'>
@@ -85,7 +83,7 @@ const Courses = () => {
                 </div>
             </div>
             {/* Courses Container */}
-            <div className={`grid lg:grid-cols-${coursesPerRow} sm:grid-cols-${coursesPerRow === 3 ? 2 : coursesPerRow} grid-cols-1 gap-6 md:mt-10 mt-14`}>
+            <div className={`grid lg:grid-cols-${coursesPerRow} sm:grid-cols-${coursesPerRow === 3 ? 2 : coursesPerRow} grid-cols-1 gap-5 md:mt-10 mt-14`}>
                 {coursesToDisplay.map(({ course, plan }) => (
                     <Course key={`${course.id}-${plan.id}`} course={course} plan={plan} />
                 ))}
